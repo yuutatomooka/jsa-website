@@ -77,3 +77,7 @@ The following GitHub Secrets are required in Actions.
 - `src/config/appConfig.ts`: Environment variable loading and app config
 - `src/utils/googleCalendar.ts`: Google Calendar fetching logic
 - `src/i18n.ts`: English/Japanese translation resources
+
+## Acknowledgements
+
+This project was initially developed as the final project for COMP SCI 571: Building User Interfaces at UW-Madison in Spring 2026. We would like to thank our instructor, Cole Nelson, for his guidance and support.
