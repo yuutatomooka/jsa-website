@@ -4,8 +4,164 @@ import { initReactI18next } from 'react-i18next'
 const resources = {
   en: {
     translation: {
+      community: {
+        "purpose": "Purpose",
+        "mission": "Mission",
+        "vision": "Vision",
+        "values": "Values",
+        "purposeMissionValues": "Purpose / Mission / Values",
+        "purposeBody": "To create a community where people connect through Japan, everyone can find a sense of belonging, and Japanese students can feel at home at UW–Madison.",
+        "missionBody": "We bring together people through shared connections to Japan, foster meaningful relationships and cultural exchange, and support Japanese students throughout their life at UW–Madison.",
+        "visionBody": "A lasting home for everyone connected by Japan at UW–Madison.",
+        "valueItems": {
+          "belonging": {
+            "title": "Belonging",
+            "body": "Everyone should feel that they have a place in JSA."
+          },
+          "connection": {
+            "title": "Connection",
+            "body": "We create meaningful relationships through a shared connection to Japan."
+          },
+          "support": {
+            "title": "Mutual Support",
+            "body": "We look out for one another and support each other through life at UW–Madison."
+          },
+          "culture": {
+            "title": "Cultural Appreciation",
+            "body": "We celebrate, share, and deepen our understanding of Japanese culture with respect and openness."
+          }
+        },
+        "whatWeDo": "What we do",
+        "whoFor": "Who JSA is for",
+        "whoForBody": "Japanese undergraduate, graduate, professional, and exchange students; students learning Japanese; and people whose interests and experiences connect them to Japan.",
+        "activities": {
+          "community": {
+            "title": "Build lasting connections",
+            "body": "Gatherings and conversation create relationships that continue beyond a single event."
+          },
+          "culture": {
+            "title": "Share Japanese culture",
+            "body": "Food, seasonal traditions, language exchange, and cultural programs offer ways to learn from one another."
+          },
+          "support": {
+            "title": "Support student life",
+            "body": "A community to turn to, connections with other Japanese students, and practical guidance for life at UW–Madison."
+          },
+          "careers": {
+            "title": "Connect to opportunities",
+            "body": "Career events, existing program resources, and relationships with alumni and partner organizations help students explore their next steps."
+          }
+        },
+        "history": "JSA’s history & campus context",
+        "whatIsJsa": "What is JSA?",
+        "homeAboutTitle": "Connected by Japan. Rooted in community.",
+        "discoverPurpose": "Discover our purpose",
+        "nextTogether": "Our next chance to connect",
+        "upcomingEvents": "Upcoming events",
+        "viewAllEvents": "View all events",
+        "newToUw": "New to UW–Madison?",
+        "newToUwBody": "JSA helps Japanese students connect with one another, navigate life in Madison, and find a community from day one.",
+        "connectStudents": "Connect with Japanese students",
+        "careersTitle": "Connections for your next chapter.",
+        "careersBody": "Explore career events, internship and job-related programs, and connections with alumni and partner organizations.",
+        "exploreCareers": "Explore careers & opportunities",
+        "pastMoments": "Past events & campus life",
+        "galleryTitle": "Moments that bring us together.",
+        "viewPartners": "Meet our partners",
+        "quickLinks": "Quick links",
+        "communityLabel": "Community"
+      },
+      involvement: {
+        "title": "Get involved",
+        "joinNote": "Start with our newsletter for community updates.",
+        "joinAccessible": "Join JSA — sign up for community updates (opens in a new tab)",
+        "attendTitle": "Attend events",
+        "attendBody": "Meet people through gatherings, conversation, and shared experiences.",
+        "communityTitle": "Join the community",
+        "communityBody": "Sign up for the newsletter to hear about events and ways to connect.",
+        "officerTitle": "Become an officer",
+        "officerBody": "Interested in helping run JSA? Ask about officer roles and next steps.",
+        "officerAction": "Ask about getting involved",
+        "collaborateTitle": "Collaborate with JSA",
+        "collaborateBody": "Explore working together on events, career connections, and community support.",
+        "collaborateAction": "Explore collaboration"
+      },
+      studentResources: {
+        "title": "For Japanese Students",
+        "description": "Connect with other Japanese students, find your footing in Madison, and build a community you can turn to throughout your time at UW–Madison.",
+        "hubTitle": "Support for life at UW–Madison.",
+        "hubBody": "Find the right starting point: the Japanese student community, study abroad guidance, or campus and Madison resources.",
+        "overview": "Resources overview",
+        "uwMadisonTitle": "UW & Madison Resources",
+        "uwMadisonBody": "Existing student-life guides and space for reviewed campus and local resources.",
+        "exchangeBody": "Explore the existing guides to considering UW–Madison, preparing to arrive, and settling into life in Madison.",
+        "exchangeAction": "Explore study abroad guidance",
+        "browseResources": "Browse resources",
+        "welcomeTitle": "A place to turn to, from day one.",
+        "connectTitle": "Join the Japanese student community",
+        "connectBody": "Whether you have just arrived or have been here for years, connect with JSA through events and community updates. Send us a message if you would like to meet other Japanese students.",
+        "sayHello": "Say hello to JSA",
+        "welcomeEventsTitle": "New student & welcome events",
+        "welcomeEventsBody": "Find published gatherings on the events calendar. Welcome-event details will appear when announced; you can contact JSA before attending your first event.",
+        "lifeTitle": "Finding your way in Madison",
+        "contentNote": "Start with the guides already available below. Topics marked “Details to come” do not yet have reviewed resource listings.",
+        "pending": "Details to come",
+        "existingGuide": "Read the Madison guide",
+        "existingResources": "See existing student resources",
+        "preparationGuide": "Read the preparation guide",
+        "helpTitle": "A question, a concern, or just a hello.",
+        "helpBody": "Contact JSA if you would like to meet people or ask about the community. You do not need to have a specific question to get in touch.",
+        "topics": {
+          "living": {
+            "title": "Living in Madison",
+            "body": "Get started with the existing guide to your first weeks, campus life, and meeting people."
+          },
+          "uw": {
+            "title": "UW resources",
+            "body": "Find the site’s existing student resources, FAQs, events, and contact options."
+          },
+          "iss": {
+            "title": "International Student Services",
+            "body": "Reviewed International Student Services links and contacts have not yet been published here."
+          },
+          "housing": {
+            "title": "Housing",
+            "body": "The preparation guide includes introductory housing information. Reviewed housing listings are not yet available here."
+          },
+          "health": {
+            "title": "Health & wellbeing",
+            "body": "Reviewed campus health and wellbeing contacts have not yet been published here."
+          },
+          "groceries": {
+            "title": "Japanese & Asian groceries",
+            "body": "A reviewed list of local Japanese and Asian grocery stores is not yet available here."
+          },
+          "careers": {
+            "title": "Career resources",
+            "body": "Explore career events and the existing collection of programs and partner organizations."
+          }
+        }
+      },
+      careerSections: {
+        "description": "Explore career events, existing programs, and connections through Japan. JSA brings career opportunities and community relationships into the same conversation.",
+        "events": "Career Events",
+        "opportunities": "Internship & Job Opportunities",
+        "alumni": "Alumni Connections",
+        "partners": "Partners / Employers",
+        "viewEvents": "View career events",
+        "noEvents": "No upcoming career events are listed right now. Check the events page for future announcements.",
+        "opportunitiesNote": "Explore the programs and organizations already collected here. Check current application dates and eligibility with each program.",
+        "alumniBody": "Interested in sharing your experience or connecting with the community? Contact JSA. Alumni profiles and specific networking opportunities will be listed when confirmed.",
+        "partnersBody": "Meet the organizations in JSA’s existing partner directory, spanning careers, campus programs, and cultural exchange.",
+        "collaborateBody": "Start a conversation about career events, student opportunities, sponsorship, or other ways to support the community.",
+        "collaborateAction": "Explore collaboration & sponsorship"
+      },
       siteTitle: 'Japanese Student Association at UW-Madison',
       nav: {
+        resources: "Resources",
+        join: "Join JSA",
+        sectionMenu: "{{section}} sections",
+
         home: 'Home',
         about: 'About',
         events: 'Events',
@@ -13,6 +169,7 @@ const resources = {
         board: 'Board',
         faq: 'FAQ',
         careers: 'Careers',
+        partners: 'Partners',
         contact: 'Contact',
       },
       lang: {
@@ -20,9 +177,34 @@ const resources = {
         ja: 'JA',
       },
       common: {
+        organizationName: 'Japanese Student Association',
+        skipContent: 'Skip to main content',
+        mainNavigation: 'Main navigation',
+        footerNavigation: 'Footer navigation',
+        language: 'Language',
+        toggleNavigation: 'Toggle navigation',
+        optional: '(optional)',
+        requiredFields: 'Fields marked * are required.',
         noSavedEvents: 'No saved events yet',
         savedEventsPreview: 'Saved events',
         savedSnapshot: 'Your saved list',
+      },
+      notFound: {
+        eyebrow: '404',
+        title: 'This page is not\non the map.',
+        description:
+          'The link may be outdated or the page may have moved. Use the links below to get back to JSA.',
+        homeCta: 'Go Home',
+        eventsCta: 'View Events',
+        helpfulLinks: 'Helpful links',
+        faqTitle: 'Questions about JSA?',
+        faqBody:
+          'Check answers about membership, events, and getting involved.',
+        contactTitle: 'Still looking?',
+        contactBody:
+          'Send us a message and we can point you in the right direction.',
+        faqCta: 'Read FAQ',
+        contactCta: 'Contact JSA',
       },
       categories: {
         career: 'Career',
@@ -47,10 +229,32 @@ const resources = {
         button: 'Sign up',
       },
       home: {
+        supportingLine: 'A place for everyone to connect through Japan.',
+        titleLead: 'A home for the',
+        titleAccent: 'Japanese community.',
+        welcome: 'All backgrounds. All language levels. All welcome.',
+        photoAlt: 'JSA members gathering for an onigiri-making event at UW–Madison',
+        photoCaption: 'A little taste of home, together.',
+        communityEyebrow: 'Find your people',
+        communityTitle: 'Many ways to feel at home.',
+        communityDescription: 'Come for the culture. Stay for the connections.',
+        culturalAction: 'Find an event',
+        languageAction: 'Get to know JSA',
+        careerAction: 'Explore opportunities',
+        instagramEyebrow: 'Our community, in moments',
+        instagramTitle: 'Life at JSA.',
+        instagramDescription: 'Campus life, shared traditions, and everything in between.',
+        loadFeed: 'Show latest Instagram posts',
+        feedLoading: 'Loading the latest posts…',
+        openInstagram: 'View on Instagram',
+        feedError: 'Instagram could not load here. You can still see our latest posts on Instagram.',
+        onigiriAlt: 'Onigiri-making with the JSA community',
+        festivalAlt: 'JSA spring festival',
+        campusAlt: 'Bascom Hill at UW–Madison',
         eyebrow: 'UW-Madison Registered Student Organization',
         title: 'A home for the Japanese community',
         description:
-          'The Japanese Student Association is a social and cultural organization that shares Japanese culture and helps build a more connected, diverse UW-Madison campus.',
+          'JSA brings together Japanese students and anyone interested in Japan to build lasting connections, share culture, and create a community where everyone can find a sense of belonging at UW–Madison.',
         ctaEvents: 'Explore Events',
         ctaAbout: 'Learn About JSA',
         culturalTitle: 'Cultural Community',
@@ -65,7 +269,7 @@ const resources = {
       },
       about: {
         eyebrow: 'About JSA',
-        title: 'A student organization for belonging, exchange, and connection through Japan.',
+        title: 'A lasting home, connected by Japan.',
         description:
           'Learn how JSA supports Japanese students, language learners, and anyone hoping to connect with Japanese culture at UW-Madison.',
         storyTitle: 'JSA at UW-Madison',
@@ -88,7 +292,7 @@ const resources = {
         communityEyebrow: 'UW and Japan',
         communityTitle: 'Japanese student community at UW-Madison',
         communityDescription:
-          'Using enrollment data from the Office of the Registrar, this section shows a snapshot of students from Japan currently represented across the university.',
+          'An enrollment snapshot preserved from the site’s existing records. The reporting period has not been recorded; these figures should not be read as current enrollment.',
         communityTotalLabel: 'Students from Japan',
         communityTotalContext: 'Total across the enrollment rows below',
         undergraduateLabel: 'Undergraduate students',
@@ -113,6 +317,15 @@ const resources = {
         },
       },
       board: {
+        current: "Current Board",
+        archive: "Past Boards / Archive",
+        currentPending: "The current academic year’s roster has not yet been published here. For now, meet the 2025–2026 officers in the archive or contact JSA.",
+        archiveBody: "The people who have helped carry JSA forward, organized by academic year.",
+        unavailable: "This board directory is not available.",
+        yearIntro: "Meet the officers who served during {{year}}.",
+        major: "Major",
+        year: "Year",
+
         eyebrow: 'Board',
         title: 'Meet the student leaders shaping this community.',
         description:
@@ -121,17 +334,24 @@ const resources = {
         yearDescription: 'Meet the officers serving JSA during the 2025-2026 academic year.',
       },
       events: {
+        allDay: "All day",
+        learnMore: "Learn more",
+        retry: 'Try again',
+        instagramFallback: 'Check Instagram for updates',
+        clearFilters: 'Clear filters',
+        resultCount_one: '{{count}} event',
+        resultCount_other: '{{count}} events',
+        noUpcomingTitle: 'More good times are on the way.',
+        noUpcomingBody: 'There are no upcoming events listed right now. Follow us on Instagram for the next announcement.',
         eyebrow: 'Events',
         title: 'See what is coming up at JSA.',
         description:
           'Explore upcoming gatherings, cultural programs, and community events hosted by JSA. Search by keyword, save events for later, or add them directly to Google Calendar.',
         loading: 'Loading events...',
-        configMissing:
-          'Calendar configuration is incomplete. Add VITE_GOOGLE_CALENDAR_API_KEY and category calendar IDs (VITE_GOOGLE_CALENDAR_ID_CAREER, VITE_GOOGLE_CALENDAR_ID_COMMUNITY_CULTURE, VITE_GOOGLE_CALENDAR_ID_COLLABORATIONS, VITE_GOOGLE_CALENDAR_ID_EXTERNAL).',
-        fetchError:
-          'Events could not be loaded from Google Calendar. Please check the calendar settings or try again later.',
+        configMissing: 'Our event calendar is temporarily unavailable. Check Instagram for upcoming gatherings.',
+        fetchError: 'We couldn’t load the event calendar. Please try again, or find the latest updates on Instagram.',
         emptyTitle: 'No events found',
-        emptyBody: 'Try changing the search term.',
+        emptyBody: 'Try a different search, category, or date — or clear your filters to see everything.',
         search: 'Search events',
         searchPlaceholder: 'Search by keyword',
         category: 'Category',
@@ -300,6 +520,140 @@ const resources = {
         jFindBody:
           'The Future Creation Individual Visa (J-Find) allows graduates of highly ranked overseas universities, including UW-Madison, to receive "Designated Activities" residence status while job hunting or preparing to start a business in Japan, enabling them to stay for up to two years.',
       },
+      partners: {
+        eyebrow: 'Partners',
+        title: 'Organizations helping JSA connect students with opportunities.',
+        description:
+          'JSA works with partner organizations that support students exploring Japan-related careers, professional development, and cross-cultural connections.',
+        partnerListLabel: 'Partner organizations',
+        visitWebsite: 'Visit Website',
+        sponsorEyebrow: 'Sponsorship',
+        sponsorTitle: 'Become a JSA sponsor',
+        sponsorDescription:
+          'We welcome companies and organizations interested in supporting cultural exchange, student events, career programming, and the Japanese community at UW-Madison.',
+        sponsorCta: 'View Sponsorship Benefits',
+        items: {
+          jelperClub: {
+            name: 'Jelper Club',
+            type: 'Career Platform',
+            logoAlt: 'Jelper Club logo',
+            description:
+              'A career platform connecting students and recent graduates with Japan-focused internship, job, and community opportunities.',
+          },
+          tkfGlobal: {
+            name: 'TKF Global',
+            type: 'Career Support',
+            logoAlt: 'TKF Global logo',
+            description:
+              'A career support initiative for students at universities outside Japan, offering mentoring, events, and job-search guidance for Japan-related careers.',
+          },
+          careerForum: {
+            name: 'Career Forum / Career-tasu',
+            type: 'Career Events',
+            logoAlt: 'Career Forum logo',
+            description:
+              'An international career event series and career resource for Japanese-English bilingual students and professionals.',
+          },
+          jaswi: {
+            name: 'Japan America Society of Wisconsin (JASWI)',
+            type: 'Community Organization',
+            logoAlt: 'Japan America Society of Wisconsin logo',
+            description:
+              'A Wisconsin nonprofit organization promoting and strengthening U.S.-Japan relations through community programs, events, and cross-sector collaboration.',
+          },
+          ceas: {
+            name: 'Center for East Asian Studies (CEAS)',
+            type: 'Academic Center',
+            logoAlt: 'Center for East Asian Studies logo',
+            description:
+              'A UW-Madison center supporting East Asia-related research, education, and outreach, with programming connected to China, Japan, and Korea.',
+          },
+          japaneseProgram: {
+            name: 'Japanese Program at UW-Madison',
+            type: 'Academic Program',
+            logoAlt: 'Japanese Program at UW-Madison logo',
+            description:
+              'UW-Madison’s Japanese program offers language, culture, literature, and linguistics courses for students building deeper engagement with Japan.',
+          },
+        },
+      },
+      sponsorship: {
+        eyebrow: 'Sponsorship',
+        title: 'Support a community that connects UW-Madison and Japan.',
+        description:
+          'Sponsorship helps JSA host cultural programs, career events, and community gatherings while giving organizations a meaningful way to connect with students interested in Japan.',
+        contactCta: 'Contact JSA',
+        benefitsEyebrow: 'Benefits',
+        benefitsTitle: 'Why sponsor JSA',
+        formatsEyebrow: 'Ways to Support',
+        formatsTitle: 'Flexible sponsorship opportunities',
+        formatsDescription:
+          'We can shape sponsorship around your goals, from event support to career programming and in-kind contributions.',
+        nextEyebrow: 'Next Step',
+        nextTitle: 'Start a sponsorship conversation',
+        nextBody:
+          'Tell us what kind of audience, event, or student support you have in mind. We will follow up with a sponsorship option that fits your organization.',
+        benefits: {
+          visibility: {
+            label: 'Visibility',
+            title: 'Be seen by Japan-connected students',
+            body:
+              'Sponsors can be recognized through JSA event materials, website placement, and communication channels tied to relevant programming.',
+          },
+          studentEngagement: {
+            label: 'Engagement',
+            title: 'Meet students in a trusted setting',
+            body:
+              'Sponsorship can create space for approachable conversations with students through events, info sessions, or collaborative programming.',
+          },
+          communityImpact: {
+            label: 'Impact',
+            title: 'Support cultural exchange on campus',
+            body:
+              'Your support helps make student-led cultural events more accessible, welcoming, and sustainable throughout the academic year.',
+          },
+          careerConnection: {
+            label: 'Career',
+            title: 'Connect with globally minded talent',
+            body:
+              'JSA reaches students interested in Japan, language, culture, business, technology, education, and cross-border careers.',
+          },
+          collaboration: {
+            label: 'Collaboration',
+            title: 'Build programming around shared goals',
+            body:
+              'We can collaborate on career panels, cultural workshops, speaker events, or student resources that match sponsor priorities.',
+          },
+          relationship: {
+            label: 'Relationship',
+            title: 'Grow a long-term campus presence',
+            body:
+              'Sponsorship gives organizations a consistent way to support and stay connected with the UW-Madison Japanese community.',
+          },
+        },
+        formats: {
+          eventSponsor: {
+            title: 'Event sponsorship',
+            body:
+              'Support a cultural event, social gathering, speaker session, or student program hosted by JSA.',
+          },
+          careerPartner: {
+            title: 'Career programming partner',
+            body:
+              'Collaborate on panels, workshops, company introductions, or Japan-related professional development events.',
+          },
+          cultureSupporter: {
+            title: 'Cultural program supporter',
+            body:
+              'Help fund materials, food, venue needs, and activities that make cultural programming possible.',
+          },
+          inKind: {
+            title: 'In-kind support',
+            body:
+              'Provide goods, services, space, or other resources that directly support student experiences.',
+          },
+        },
+      },
       contact: {
         eyebrow: 'Contact',
         title: 'Reach out with questions, collaboration ideas, or event interest.',
@@ -307,8 +661,8 @@ const resources = {
           'Use this form to contact JSA about membership, events, collaboration, sponsorship, or general questions.',
         formFallback: 'If the custom form does not work, open the original Google Form in a new tab.',
         openForm: 'Open Google Form',
-        successTitle: 'Thank you for reaching out.',
-        successBody: 'Your inquiry has been sent to the JSA Google Form.',
+        successTitle: 'Check the Google Forms tab.',
+        successBody: 'Your submission opens in a new tab. Please check Google Forms for confirmation. Your draft is still saved here.',
         submitFrameTitle: 'Google Form submission frame',
         draft:
           'This form now keeps a local draft, so reloading the page does not immediately erase your progress.',
@@ -324,8 +678,7 @@ const resources = {
         placeholderSubject: 'What is this about?',
         placeholderMessage: 'How can JSA help?',
         selectPlaceholder: 'Select one',
-        googleNotice:
-          'This custom form submits responses to Google Forms. Please do not include passwords or sensitive personal information.',
+        googleNotice: 'Submitting opens Google Forms in a new tab so you can confirm delivery. Your draft stays on this device.',
         inquiryOptions: {
           general: 'General Inquiry',
           eventParticipation: 'Event Participation',
@@ -339,8 +692,164 @@ const resources = {
   },
   ja: {
     translation: {
+      community: {
+        "purpose": "存在意義",
+        "mission": "ミッション",
+        "vision": "ビジョン",
+        "values": "大切にする価値観",
+        "purposeMissionValues": "存在意義・ミッション・価値観",
+        "purposeBody": "日本を接点として人と人がつながり、誰もが居場所を感じられるコミュニティをつくるとともに、日本人学生がUW–Madisonで安心して生活できる心の拠り所となる。",
+        "missionBody": "日本とのつながりを通じて、人々が出会い、交流し、互いを支え合える機会をつくる。同時に、日本人学生がUW–Madisonでの生活を安心して送れるよう、コミュニティとして支える。",
+        "visionBody": "UW–Madisonで、日本を通じてつながるすべての人にとって、いつでも戻ってこられる居場所になる。",
+        "valueItems": {
+          "belonging": {
+            "title": "居場所",
+            "body": "一人ひとりが、JSAに自分の居場所があると感じられることを大切にします。"
+          },
+          "connection": {
+            "title": "つながり",
+            "body": "日本という共通の接点を通じて、人と人との確かなつながりを育みます。"
+          },
+          "support": {
+            "title": "支え合い",
+            "body": "互いを気にかけ、UW–Madisonでの生活を支え合います。"
+          },
+          "culture": {
+            "title": "日本文化への理解と敬意",
+            "body": "敬意と開かれた姿勢を持ち、日本文化を楽しみ、共有し、理解を深めます。"
+          }
+        },
+        "whatWeDo": "私たちの活動",
+        "whoFor": "JSAにつながる人たち",
+        "whoForBody": "日本人の学部生・大学院生・専門職学生・交換留学生、日本語を学ぶ学生、そして日本への関心や経験を持つ人々がつながるコミュニティです。",
+        "activities": {
+          "community": {
+            "title": "続いていくつながりをつくる",
+            "body": "集まりや会話をきっかけに、一度のイベントで終わらない関係を育みます。"
+          },
+          "culture": {
+            "title": "日本文化を分かち合う",
+            "body": "食や季節の行事、言語交流、文化企画を通じて、互いに学ぶ機会をつくります。"
+          },
+          "support": {
+            "title": "学生生活を支え合う",
+            "body": "日本人学生同士のつながりや生活の情報を通じて、UW–Madisonで頼れるコミュニティをつくります。"
+          },
+          "careers": {
+            "title": "次の機会へつなげる",
+            "body": "キャリアイベントや既存のプログラム情報、卒業生・提携団体とのつながりを通じて、将来を考えるきっかけを届けます。"
+          }
+        },
+        "history": "JSAの歩みと大学とのつながり",
+        "whatIsJsa": "JSAとは",
+        "homeAboutTitle": "日本でつながり、ここに居場所を。",
+        "discoverPurpose": "JSAの想いを知る",
+        "nextTogether": "次の出会いのきっかけに",
+        "upcomingEvents": "今後のイベント",
+        "viewAllEvents": "すべてのイベントを見る",
+        "newToUw": "UW–Madisonでの生活を始める方へ",
+        "newToUwBody": "日本人学生同士のつながり、マディソンでの暮らし、初日から頼れる仲間。JSAが新しい生活の一歩を支えます。",
+        "connectStudents": "日本人学生とつながる",
+        "careersTitle": "つながりを、次の一歩へ。",
+        "careersBody": "キャリアイベントやインターンシップ・就職関連のプログラム、卒業生や提携団体とのつながりを紹介します。",
+        "exploreCareers": "キャリア・機会を探す",
+        "pastMoments": "これまでのイベントとキャンパスの日常",
+        "galleryTitle": "一緒につくる、思い出。",
+        "viewPartners": "提携団体を見る",
+        "quickLinks": "主なページ",
+        "communityLabel": "コミュニティ"
+      },
+      involvement: {
+        "title": "JSAに関わる",
+        "joinNote": "まずはニュースレターで、コミュニティの最新情報を。",
+        "joinAccessible": "JSAに参加する — ニュースレターに登録（別タブで開きます）",
+        "attendTitle": "イベントに参加する",
+        "attendBody": "集まりや会話、一緒に過ごす時間を通じて、仲間と出会う。",
+        "communityTitle": "コミュニティにつながる",
+        "communityBody": "ニュースレターに登録して、イベントや交流の機会を受け取る。",
+        "officerTitle": "運営に関わる",
+        "officerBody": "JSAを一緒につくりたい方へ。役員の活動や関わり方について、お問い合わせください。",
+        "officerAction": "運営への参加を相談する",
+        "collaborateTitle": "JSAと協力する",
+        "collaborateBody": "イベントやキャリア支援、コミュニティづくりでの連携を考える。",
+        "collaborateAction": "連携について知る"
+      },
+      studentResources: {
+        "title": "日本人学生の方へ",
+        "description": "日本人学生同士でつながり、マディソンでの暮らしに少しずつ慣れ、UW–Madisonでの生活を通じて頼れる仲間を見つけませんか。",
+        "hubTitle": "UW–Madisonでの暮らしを、つながりから。",
+        "hubBody": "日本人学生のコミュニティ、留学準備、大学やマディソンの生活情報。今の自分に合った入口から探せます。",
+        "overview": "リソース一覧",
+        "uwMadisonTitle": "大学・マディソンの生活情報",
+        "uwMadisonBody": "既存の学生生活ガイドと、大学・地域の情報をまとめるページです。",
+        "exchangeBody": "UW–Madisonへの留学を考える段階から、渡航準備、到着後の生活まで、既存のガイドをご覧いただけます。",
+        "exchangeAction": "留学ガイドを見る",
+        "browseResources": "生活情報を見る",
+        "welcomeTitle": "初日から、頼れる居場所に。",
+        "connectTitle": "日本人学生のコミュニティにつながる",
+        "connectBody": "来たばかりの方も、長く在籍している方も。イベントやニュースレターを通じてJSAにつながれます。日本人学生と知り合いたいときは、気軽にメッセージをお送りください。",
+        "sayHello": "JSAに声をかける",
+        "welcomeEventsTitle": "新入生・歓迎イベント",
+        "welcomeEventsBody": "開催が決まった集まりはイベントカレンダーでご案内します。歓迎イベントの詳細も、発表後に掲載します。初めての参加が気になるときは、事前にご連絡ください。",
+        "lifeTitle": "マディソンでの生活を始める",
+        "contentNote": "まずは掲載済みのガイドをご活用ください。「詳細は今後掲載」とある項目は、確認済みの案内がまだありません。",
+        "pending": "詳細は今後掲載",
+        "existingGuide": "到着後の生活ガイドを見る",
+        "existingResources": "掲載済みのリソースを見る",
+        "preparationGuide": "渡航準備ガイドを見る",
+        "helpTitle": "相談でも、質問でも、ちょっとした挨拶でも。",
+        "helpBody": "仲間と出会いたいとき、コミュニティについて知りたいときはJSAへ。具体的な質問がなくても、気軽にご連絡ください。",
+        "topics": {
+          "living": {
+            "title": "マディソンでの暮らし",
+            "body": "到着後の数週間、キャンパスでの生活、人との出会いについて、既存のガイドをご覧ください。"
+          },
+          "uw": {
+            "title": "大学のリソース",
+            "body": "掲載済みの学生向けリソース、FAQ、イベント、お問い合わせ先をまとめています。"
+          },
+          "iss": {
+            "title": "留学生支援（ISS）",
+            "body": "International Student Servicesの確認済みリンクや連絡先は、このページにはまだ掲載していません。"
+          },
+          "housing": {
+            "title": "住まい探し",
+            "body": "渡航準備ガイドに住まい探しの基本情報があります。確認済みの物件情報はまだ掲載していません。"
+          },
+          "health": {
+            "title": "健康・ウェルビーイング",
+            "body": "学内の健康・ウェルビーイングに関する確認済みの窓口情報は、まだ掲載していません。"
+          },
+          "groceries": {
+            "title": "日本・アジア食材のお店",
+            "body": "地域の日本・アジア食材店について、確認済みのお店リストはまだ掲載していません。"
+          },
+          "careers": {
+            "title": "キャリア情報",
+            "body": "キャリアイベントや、掲載済みのプログラム・提携団体の情報をご覧いただけます。"
+          }
+        }
+      },
+      careerSections: {
+        "description": "日本を接点としたキャリアイベント、既存のプログラム情報、人とのつながりを紹介します。将来への機会を、コミュニティとともに考える場です。",
+        "events": "キャリアイベント",
+        "opportunities": "インターンシップ・就職関連情報",
+        "alumni": "卒業生とのつながり",
+        "partners": "提携団体・企業",
+        "viewEvents": "キャリアイベントを見る",
+        "noEvents": "現在、掲載中のキャリアイベントはありません。今後のお知らせはイベントページをご確認ください。",
+        "opportunitiesNote": "掲載済みのプログラムや団体を紹介します。最新の応募期間・応募資格は、各プログラムでご確認ください。",
+        "alumniBody": "経験を共有したい方、コミュニティとつながりたい方はJSAへご連絡ください。卒業生の紹介や具体的な交流機会は、確認後に掲載します。",
+        "partnersBody": "キャリア支援、学内プログラム、文化交流など、既存のパートナー一覧に掲載されている団体を紹介します。",
+        "collaborateBody": "キャリアイベントや学生向けの機会、スポンサーシップなど、コミュニティを支える連携についてご相談ください。",
+        "collaborateAction": "連携・スポンサーシップを知る"
+      },
       siteTitle: 'ウィスコンシン大学マディソン校 日本学生会',
       nav: {
+        resources: "リソース",
+        join: "JSAに参加する",
+        sectionMenu: "{{section}}のメニュー",
+
         home: 'ホーム',
         about: '団体紹介',
         events: 'イベント',
@@ -348,6 +857,7 @@ const resources = {
         board: '役員紹介',
         faq: 'FAQ',
         careers: 'キャリア',
+        partners: 'パートナー',
         contact: 'お問い合わせ',
       },
       lang: {
@@ -355,9 +865,34 @@ const resources = {
         ja: 'JA',
       },
       common: {
+        organizationName: '日本学生会',
+        skipContent: '本文へ移動',
+        mainNavigation: 'メインナビゲーション',
+        footerNavigation: 'フッターナビゲーション',
+        language: '表示言語',
+        toggleNavigation: 'メニューを開閉',
+        optional: '（任意）',
+        requiredFields: '* は必須項目です。',
         noSavedEvents: '保存したイベントはまだありません',
         savedEventsPreview: '保存したイベント',
         savedSnapshot: 'マイリスト',
+      },
+      notFound: {
+        eyebrow: '404',
+        title: 'ページが\n見つかりません',
+        description:
+          'リンクが古いか、ページの場所が変わった可能性があります。以下のリンクからJSAのページへ戻れます。',
+        homeCta: 'ホームへ戻る',
+        eventsCta: 'イベントを見る',
+        helpfulLinks: '関連リンク',
+        faqTitle: 'JSAについて知りたい方へ',
+        faqBody:
+          '参加方法やイベントについて、よくある質問を確認できます。',
+        contactTitle: 'お探しの情報が見つからない場合',
+        contactBody:
+          'お問い合わせフォームからご連絡ください。必要な情報へご案内します。',
+        faqCta: 'FAQを見る',
+        contactCta: '問い合わせる',
       },
       categories: {
         career: 'キャリア',
@@ -382,10 +917,32 @@ const resources = {
         button: 'ニュースレターに登録',
       },
       home: {
+        supportingLine: 'そして、日本を通じて誰もがつながれるコミュニティ。',
+        titleLead: '日本人にとっての、',
+        titleAccent: 'UWでの居場所。',
+        welcome: 'どんな背景でも、日本語のレベルでも。誰でも歓迎。',
+        photoAlt: 'UW–Madisonのおにぎり作りイベントに集まったJSAメンバー',
+        photoCaption: 'みんなで囲む、なつかしい味。',
+        communityEyebrow: 'ここから広がるつながり',
+        communityTitle: '自分らしく、つながろう。',
+        communityDescription: '文化を楽しみ、仲間と出会う。あなたらしい参加のかたちで。',
+        culturalAction: 'イベントを探す',
+        languageAction: 'JSAを知る',
+        careerAction: 'キャリア情報を見る',
+        instagramEyebrow: 'コミュニティの日常',
+        instagramTitle: 'JSAのある日々。',
+        instagramDescription: 'キャンパスでの毎日、日本の行事、みんなとの思い出。',
+        loadFeed: 'Instagramの最新投稿を表示',
+        feedLoading: '最新の投稿を読み込み中…',
+        openInstagram: 'Instagramで見る',
+        feedError: '投稿を読み込めませんでした。最新情報はInstagramでご覧いただけます。',
+        onigiriAlt: 'JSAのみんなで楽しむおにぎり作り',
+        festivalAlt: 'JSAの春祭り',
+        campusAlt: 'UW–Madisonのバスコム・ヒル',
         eyebrow: 'UW-Madison 公認学生団体',
         title: '日本コミュニティの中心として',
         description:
-          'JSAは、UW-Madisonで日本にゆかりのある学生や日本文化に関心のある学生が集まるコミュニティです。交流イベントや文化企画を通じて、キャンパスに新しいつながりをつくっています。',
+          'JSAは、日本人学生と日本に関心を持つ人々がつながり、文化を共有し、UW–Madisonで一人ひとりが居場所を感じられるコミュニティをつくります。',
         ctaEvents: 'イベントを見る',
         ctaAbout: 'JSAについて知る',
         culturalTitle: '季節の行事を楽しむ',
@@ -419,8 +976,7 @@ const resources = {
           '文化イベント、日本語会話の交流会、学生同士のミキサー、キャリア関連企画などを行っています。',
         communityEyebrow: 'UW-Madisonと日本',
         communityTitle: 'UW-Madisonで学ぶ日本出身の学生',
-        communityDescription:
-          'Office of the Registrarの在籍データをもとに、UW-Madisonに在籍する日本出身学生の状況をまとめています。',
+        communityDescription: '既存のサイトに記録されていた在籍者数です。集計時期の記録がないため、現在の在籍者数を示すものではありません。',
         communityTotalLabel: '日本国籍の学生数',
         communityTotalContext: '下の区分を合計した人数',
         undergraduateLabel: '学部生',
@@ -445,6 +1001,15 @@ const resources = {
         },
       },
       board: {
+        current: "現在の運営メンバー",
+        archive: "歴代の運営メンバー",
+        currentPending: "今年度の運営メンバーは、このページにはまだ掲載していません。2025–2026年度のメンバーはアーカイブでご覧いただけます。ご質問はJSAへご連絡ください。",
+        archiveBody: "JSAをつないできた運営メンバーを、年度ごとに紹介します。",
+        unavailable: "この年度のメンバーは掲載されていません。",
+        yearIntro: "{{year}}年度に活動した運営メンバーです。",
+        major: "専攻",
+        year: "学年",
+
         eyebrow: '役員紹介',
         title: 'JSAを運営する学生メンバー',
         description:
@@ -453,17 +1018,23 @@ const resources = {
         yearDescription: '2025-2026年度にJSAを運営するメンバーです。',
       },
       events: {
+        allDay: "終日",
+        learnMore: "詳細を見る",
+        retry: '再読み込み',
+        instagramFallback: 'Instagramで最新情報を見る',
+        clearFilters: '条件をクリア',
+        resultCount: '{{count}}件のイベント',
+        noUpcomingTitle: '次のイベントをお楽しみに。',
+        noUpcomingBody: '現在、掲載中のイベントはありません。最新のお知らせはInstagramをご覧ください。',
         eyebrow: 'イベント',
         title: '開催予定のイベント',
         description:
           '交流会や文化イベント、コラボ企画など、JSAの最新イベント情報を掲載しています。気になるイベントは保存したり、Googleカレンダーに追加したりできます。',
         loading: 'イベント情報を読み込んでいます...',
-        configMissing:
-          'カレンダー設定が不足しています。VITE_GOOGLE_CALENDAR_API_KEY とカテゴリ別カレンダーID（VITE_GOOGLE_CALENDAR_ID_CAREER / VITE_GOOGLE_CALENDAR_ID_COMMUNITY_CULTURE / VITE_GOOGLE_CALENDAR_ID_COLLABORATIONS / VITE_GOOGLE_CALENDAR_ID_EXTERNAL）を設定してください。',
-        fetchError:
-          'Google Calendar からイベントを読み込めませんでした。カレンダー設定を確認するか、後でもう一度お試しください。',
+        configMissing: 'イベントカレンダーを現在ご利用いただけません。最新情報はInstagramをご覧ください。',
+        fetchError: 'イベントを読み込めませんでした。再読み込みするか、Instagramで最新情報をご確認ください。',
         emptyTitle: '該当するイベントがありません',
-        emptyBody: '検索キーワードを変更してみてください。',
+        emptyBody: 'キーワード・カテゴリー・日付を変更するか、条件をクリアしてください。',
         search: 'イベントを探す',
         searchPlaceholder: 'キーワードで検索',
         category: 'カテゴリ',
@@ -625,10 +1196,144 @@ const resources = {
           '日本各地の都市や町、村で働きながら生活できる競争率の高いプログラムです。多くの参加者は ALT（外国語指導助手）として学校で勤務し、一部は CIR（国際交流員）として通訳・翻訳などの業務を担当します。（日本国籍者は対象外）',
         jrCentralTitle: 'JR東海インターンシップ',
         jrCentralBody:
-          '世界有数の高速鉄道会社の一つである JR東海と、日本の職業文化について深く知ることができるインターンシップです。UW–Madison 卒業生であり JR Central 名誉会長の葛西敬之氏の支援のもと設計され、毎年 2〜3 名の学生が 8 週間にわたりさまざまな業務を経験できます。',
+          '世界有数の高速鉄道会社の一つである JR東海と、日本の職業文化について深く知ることができるインターンシップです。UW–Madison 卒業生であり元JR東海名誉会長であった葛西敬之氏の支援のもと設計され、毎年 2〜3 名の学生が 8 週間にわたりさまざまな業務を経験できます。',
         jFindTitle: '未来創造人材制度（J-Find）',
         jFindBody:
           '未来創造人材制度（J-Find）は、UW–Madison を含む優秀な海外大学を卒業した人を対象に、日本での「就職活動」や「起業準備活動」を行う場合、「特定活動（未来創造人材）」の在留資格が付与され、最長 2 年間日本に滞在できる制度です。',
+      },
+      partners: {
+        eyebrow: 'パートナー',
+        title: '学生の機会づくりを支えるパートナー団体',
+        description:
+          'JSAは、日本に関わるキャリア、学生交流、文化的なつながりを広げるため、さまざまな団体と連携しています。',
+        partnerListLabel: 'パートナー団体一覧',
+        visitWebsite: '公式サイトを見る',
+        sponsorEyebrow: 'スポンサー募集',
+        sponsorTitle: 'JSAの活動を支援しませんか',
+        sponsorDescription:
+          '文化交流イベント、学生向けキャリア企画、UW-Madisonの日本コミュニティ支援に関心のある企業・団体からのスポンサーシップを募集しています。',
+        sponsorCta: 'スポンサーのメリットを見る',
+        items: {
+          jelperClub: {
+            name: 'Jelper Club',
+            type: 'キャリアプラットフォーム',
+            logoAlt: 'Jelper Club ロゴ',
+            description:
+              '日本でのインターンシップ、就職、コミュニティ機会に関心のある学生・若手人材を支援するキャリアプラットフォームです。',
+          },
+          tkfGlobal: {
+            name: 'TKF Global',
+            type: 'キャリア支援',
+            logoAlt: 'TKF Global ロゴ',
+            description:
+              '海外大学で学ぶ学生に向けて、日本での就職活動に関するメンタリング、イベント、情報提供を行うキャリア支援サービスです。',
+          },
+          careerForum: {
+            name: 'Career Forum / Career-tasu',
+            type: 'キャリアイベント',
+            logoAlt: 'Career Forum ロゴ',
+            description:
+              '日英バイリンガルの学生・社会人に向けた国際的なキャリアイベントと就職情報サービスです。',
+          },
+          jaswi: {
+            name: 'Japan America Society of Wisconsin (JASWI)',
+            type: '地域団体',
+            logoAlt: 'Japan America Society of Wisconsin ロゴ',
+            description:
+              'ウィスコンシン州で日米関係を深めるため、地域イベントやプログラム、官民の連携機会をつくる非営利団体です。',
+          },
+          ceas: {
+            name: 'Center for East Asian Studies (CEAS)',
+            type: '学術センター',
+            logoAlt: 'Center for East Asian Studies ロゴ',
+            description:
+              'UW-Madisonで中国・日本・韓国を含む東アジアに関する研究、教育、アウトリーチを支える学術センターです。',
+          },
+          japaneseProgram: {
+            name: 'Japanese Program at UW-Madison',
+            type: '学術プログラム',
+            logoAlt: 'Japanese Program at UW-Madison ロゴ',
+            description:
+              '日本語、文化、文学、言語学などを学べるUW-Madisonの日本語・日本研究プログラムです。',
+          },
+        },
+      },
+      sponsorship: {
+        eyebrow: 'スポンサー募集',
+        title: 'UW-Madisonと日本をつなぐコミュニティを支援する',
+        description:
+          'スポンサーシップは、JSAの文化交流イベント、キャリア企画、学生同士のつながりづくりを支えます。同時に、企業・団体が日本に関心のある学生と自然につながる機会にもなります。',
+        contactCta: 'JSAに問い合わせる',
+        benefitsEyebrow: 'メリット',
+        benefitsTitle: 'JSAを支援するメリット',
+        formatsEyebrow: '支援方法',
+        formatsTitle: '目的に合わせたスポンサーシップ',
+        formatsDescription:
+          'イベント協賛、キャリア企画、物品・サービス提供など、団体の目的に合わせて柔軟に相談できます。',
+        nextEyebrow: '次のステップ',
+        nextTitle: 'スポンサーについて相談する',
+        nextBody:
+          '届けたい学生層、関わりたいイベント、支援したい内容をお知らせください。JSAから適した形をご提案します。',
+        benefits: {
+          visibility: {
+            label: '認知',
+            title: '日本に関心のある学生に届く',
+            body:
+              '関連イベントの告知物、ウェブサイト、JSAの発信を通じて、スポンサー団体として認知を広げられます。',
+          },
+          studentEngagement: {
+            label: '交流',
+            title: '学生と自然に接点を持てる',
+            body:
+              'イベント、説明会、共同企画などを通じて、学生と話しやすい形でつながる機会をつくれます。',
+          },
+          communityImpact: {
+            label: '貢献',
+            title: 'キャンパスの文化交流を支える',
+            body:
+              '学生主体の文化イベントをより参加しやすく、継続しやすいものにする支援につながります。',
+          },
+          careerConnection: {
+            label: 'キャリア',
+            title: 'グローバル志向の学生とつながる',
+            body:
+              '日本、言語、文化、ビジネス、テクノロジー、教育、国際的なキャリアに関心のある学生に接点を持てます。',
+          },
+          collaboration: {
+            label: '連携',
+            title: '目的に合わせた企画ができる',
+            body:
+              'キャリアパネル、文化ワークショップ、講演会、学生向けリソースなど、支援目的に合う企画を相談できます。',
+          },
+          relationship: {
+            label: '継続性',
+            title: 'キャンパスとの長期的な関係を育てる',
+            body:
+              'スポンサーシップを通じて、UW-Madisonの日本コミュニティと継続的につながることができます。',
+          },
+        },
+        formats: {
+          eventSponsor: {
+            title: 'イベント協賛',
+            body:
+              'JSAが開催する文化イベント、交流会、講演会、学生向けプログラムを支援できます。',
+          },
+          careerPartner: {
+            title: 'キャリア企画パートナー',
+            body:
+              'パネル、ワークショップ、企業紹介、日本に関わるキャリアイベントを共同で企画できます。',
+          },
+          cultureSupporter: {
+            title: '文化プログラム支援',
+            body:
+              '企画に必要な物品、食事、会場、活動費などを支援し、文化交流の場を広げられます。',
+          },
+          inKind: {
+            title: '物品・サービス提供',
+            body:
+              '学生体験を支える物品、サービス、場所、その他のリソース提供も歓迎しています。',
+          },
+        },
       },
       contact: {
         eyebrow: 'お問い合わせ',
@@ -637,8 +1342,8 @@ const resources = {
           '入会、イベント参加、団体連携、スポンサーシップなどに関するお問い合わせを受け付けています。',
         formFallback: 'フォームが表示されない場合は、Google Formを新しいタブで開いてください。',
         openForm: 'Google Form を開く',
-        successTitle: 'お問い合わせありがとうございます。',
-        successBody: 'お問い合わせ内容を送信しました。',
+        successTitle: 'Googleフォームのタブをご確認ください。',
+        successBody: '送信結果は別タブのGoogleフォームでご確認ください。入力内容はこちらに保存されています。',
         submitFrameTitle: 'Google Form 送信用フレーム',
         draft:
           '入力内容はこの端末に一時保存されます。ページを再読み込みしても、すぐには消えません。',
@@ -654,8 +1359,7 @@ const resources = {
         placeholderSubject: 'お問い合わせの件名',
         placeholderMessage: 'どのようなご相談ですか？',
         selectPlaceholder: '選択してください',
-        googleNotice:
-          'このフォームは Google Form を通じて回答を送信します。パスワードや機密性の高い個人情報は入力しないでください。',
+        googleNotice: '送信すると別タブでGoogleフォームが開き、送信結果を確認できます。入力内容はこの端末に保存されます。',
         inquiryOptions: {
           general: '一般的な質問',
           eventParticipation: 'イベント参加',

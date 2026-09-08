@@ -40,7 +40,9 @@ jobs:
           VITE_GOOGLE_CALENDAR_ID_COMMUNITY_CULTURE: ${{ secrets.VITE_GOOGLE_CALENDAR_ID_COMMUNITY_CULTURE }}
           VITE_GOOGLE_CALENDAR_ID_COLLABORATIONS: ${{ secrets.VITE_GOOGLE_CALENDAR_ID_COLLABORATIONS }}
           VITE_GOOGLE_CALENDAR_ID_EXTERNAL: ${{ secrets.VITE_GOOGLE_CALENDAR_ID_EXTERNAL }}
-        run: npm run build
+        run: |
+          npm run build
+          npm run publish:win-bundle
 
       - name: Setup Pages
         uses: actions/configure-pages@v5

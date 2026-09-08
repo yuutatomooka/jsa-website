@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
-import jsaSpringFes from '../assets/jsa_springfes.jpg'
+import jsaSpringFes from '../assets/optimized/jsa_springfes.jpg'
 
 function ExchangeResourcesPage() {
   const { t } = useTranslation()

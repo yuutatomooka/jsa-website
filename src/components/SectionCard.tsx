@@ -9,7 +9,7 @@ function SectionCard({ title, body }: SectionCardProps) {
   return (
     <Card className="info-card h-100">
       <Card.Body>
-        <Card.Title>{title}</Card.Title>
+        <Card.Title as="h3">{title}</Card.Title>
         <Card.Text>{body}</Card.Text>
       </Card.Body>
     </Card>

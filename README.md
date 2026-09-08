@@ -27,6 +27,7 @@ The app runs at `http://localhost:5173`.
 - `npm run build`: Run TypeScript build and production build
 - `npm run preview`: Preview the production build locally
 - `npm run lint`: Run ESLint
+- `npm test`: Run calendar, navigation, and bilingual content regression tests without external requests
 
 ## Environment Variables
 
@@ -47,6 +48,9 @@ Copy `.env.example` to `.env` and fill in your values.
 - `/` Home
 - `/about` About
 - `/events` Events
+- `/resources` Resources overview
+- `/resources/japanese-students` Japanese student community and support
+- `/resources/uw-madison` Existing UW/Madison guidance and resource placeholders
 - `/exchange`
 - `/exchange/considering-uw-madison`
 - `/exchange/preparing-for-uw-madison`
@@ -54,8 +58,11 @@ Copy `.env.example` to `.env` and fill in your values.
 - `/exchange/resources`
 - `/board`
 - `/board/2025-2026`
+- `/board/:year` Published board archive, populated from `src/data/board.ts`
 - `/faq`
 - `/careers`
+- `/partners`
+- `/sponsorship`
 - `/contact`
 
 ## Deployment (GitHub Pages)
@@ -77,6 +84,18 @@ The following GitHub Secrets are required in Actions.
 - `src/config/appConfig.ts`: Environment variable loading and app config
 - `src/utils/googleCalendar.ts`: Google Calendar fetching logic
 - `src/i18n.ts`: English/Japanese translation resources
+
+## Community content and maintenance
+
+The existing design and legacy URLs are retained. The primary navigation is Home, About, Events, Resources, Careers, Board, and Contact. Study Abroad remains at `/exchange` under Resources; FAQ belongs to About, and Partners/Sponsorship belong to Careers. Navigation and footer destinations are shared in `src/data/navigation.ts`.
+
+- **Purpose and bilingual copy:** `src/i18n.ts` contains the supplied purpose, mission, vision, and values, plus synchronized English/Japanese page copy. Continue using this translation system for new content.
+- **Join JSA:** `src/config/siteLinks.ts` centralizes the existing Mailchimp newsletter and Instagram destinations. `JoinLink` clearly identifies the newsletter signup; it does not claim to be a formal membership application.
+- **Upcoming events:** `src/hooks/useCalendarEvents.ts` uses the existing Google Calendar configuration for Home, Events, and Careers. The compact preview shows at most three current/upcoming records, including ongoing events until their recorded end. Timed labels use Madison time. No sample dates are used as a fallback. Without calendar configuration, the site shows a clear unavailable state and the existing Instagram link.
+- **Student resources:** `src/data/studentResources.ts` links only to existing internal guides. ISS, health/wellbeing, and grocery listings are visibly unpublished. Add reviewed information and confirmed URLs before replacing those placeholders.
+- **Board continuity:** `src/data/board.ts` preserves the eight existing 2025–2026 officers. Set `currentBoardYear` only after a current roster is confirmed. Optional photo, major, year, and bio translation keys support future profiles; absent fields are omitted and initials stand in for missing photos.
+- **Partners and careers:** `src/data/partners.ts` is the existing partner directory shared by Home and Partners. All six existing career program descriptions are retained. Add opportunities, employer relationships, and alumni profiles only when confirmed.
+- **Historical context:** The existing About story and enrollment figures remain in the expandable history section. The figures are explicitly labeled as an undated historical snapshot.
 
 ## Acknowledgements
 

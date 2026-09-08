@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="ja">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>JSA · WIN編集プレビュー</title>
+<style>body{margin:0;background:#f6f7f5;color:#242624;font:16px/1.7 system-ui}header,main{max-width:1120px;margin:auto;padding:24px}header{border-bottom:1px solid #ddd}button{padding:10px 16px;margin:4px;border:1px solid #bbb;border-radius:6px;background:white;cursor:pointer}button:focus-visible{outline:3px solid #ba1826}#status{color:#62675f}[contenteditable=true]{outline:2px dashed #ba1826;padding:20px;margin:24px 0} [data-jsa-block] img{max-width:100%;max-height:360px}</style></head>
+<body><header><strong>JSA / WIN編集プレビュー</strong><p>文章を編集して、JSAデザインへの反映を試せます。ここでの変更は保存されません。</p><button id="design">デザイン表示</button><button id="edit">文章を編集</button><button id="duplicate">活動紹介を複製</button><button id="photo">メイン写真を差し替える</button><button id="original">通常表示に戻す</button><p id="status" role="status">デザイン表示</p></header>
+<main>
+<section data-jsa-block="hero">
+<p data-jsa-field="eyebrow">Japanese Student Association · UW–Madison</p>
+<h1 data-jsa-field="title">A little Japan. A home in Madison.</h1>
+<p data-jsa-field="body">日本とのつながりを、マディソンで。文化や言葉を通じて出会い、一緒に楽しむコミュニティへようこそ。</p>
+<img data-jsa-field="image" src="/src/assets/home_background.jpg" alt="JSAの仲間たち">
+<a data-jsa-field="link" href="https://win.wisc.edu/JSA/home/">WINでJSAを見る</a>
+</section>
+<section data-jsa-block="activity">
+<p data-jsa-field="eyebrow">Community & Culture</p><h2 data-jsa-field="title">一緒に、日本の文化を楽しもう。</h2>
+<p data-jsa-field="body">食べて、話して、新しい仲間に出会う。JSAの活動を写真とともに紹介するブロックです。</p>
+<img data-jsa-field="image" src="/src/assets/jsa_onigiri.jpg" alt="おにぎりを通じた交流">
+<a data-jsa-field="link" href="https://www.instagram.com/jsamadison/">活動を見る</a>
+</section>
+</main>
+<script type="module">
+import {start,stop} from '/src/win/entry.tsx';
+const status=document.querySelector('#status');
+const clearEditing=()=>document.querySelectorAll('[data-jsa-block]').forEach(el=>el.removeAttribute('contenteditable'));
+document.querySelector('#design').onclick=()=>{clearEditing();start();status.textContent='デザイン表示：編集した内容が反映されています。'};
+document.querySelector('#edit').onclick=()=>{stop();document.querySelectorAll('[data-jsa-block]').forEach(el=>el.contentEditable='true');status.textContent='見出しや本文を直接編集してから「デザイン表示」を押してください。'};
+document.querySelector('#original').onclick=()=>{stop();clearEditing();status.textContent='通常表示：Reactを解除しても文章・写真・リンクが残ります。'};
+document.querySelector('#duplicate').onclick=()=>{const copy=document.querySelector('[data-jsa-block="activity"]').cloneNode(true);copy.hidden=false;document.querySelector('main').append(copy);status.textContent='活動紹介を複製しました。文章を編集できます。'};
+document.querySelector('#photo').onclick=()=>{const image=document.querySelector('[data-jsa-block="hero"] [data-jsa-field="image"]');const alternate=image.getAttribute('src').includes('home_background');image.setAttribute('src',new URL(alternate?'src/assets/optimized/jsa_springfes.jpg':'src/assets/home_background.jpg',document.baseURI).href);image.alt=alternate?'JSAの春祭り':'JSAの仲間たち';status.textContent='メイン写真を差し替えました。';};
+start();
+</script></body></html>

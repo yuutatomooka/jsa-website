@@ -4,14 +4,15 @@ import Button from 'react-bootstrap/Button'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import { useTranslation } from 'react-i18next'
-import { appConfig, eventCategories, type EventCategory } from '../config/appConfig'
+import { eventCategories, type EventCategory } from '../config/appConfig'
+import { useSearchParams } from 'react-router-dom'
+import useCalendarEvents from '../hooks/useCalendarEvents'
+import { siteLinks } from '../config/siteLinks'
 import EventCard from '../components/EventCard'
 import EventFilterBar from '../components/EventFilterBar'
 import type { EventItem } from '../data/events'
-import { fetchGoogleCalendarEvents } from '../utils/googleCalendar'
 
 const savedEventsKey = 'jsa-saved-events'
-const calendarApiKey = appConfig.googleCalendarApiKey
 type EventFilterCategory = EventCategory | 'all'
 type DatePreset = 'all' | 'today' | 'thisWeek' | 'thisMonth' | 'custom'
 const getEventKey = (event: EventItem) => `${event.category}:${event.id ?? event.title}`
@@ -90,17 +91,20 @@ const getDateRange = (preset: DatePreset, customStartDate: string, customEndDate
 }
 
 function EventsPage() {
-  const { i18n, t } = useTranslation()
-  const [selectedCategory, setSelectedCategory] = useState<EventFilterCategory>('all')
+  const { t } = useTranslation()
+  const [searchParams, setSearchParams] = useSearchParams()
+  const categoryParam = searchParams.get('category')
+  const selectedCategory: EventFilterCategory = eventCategories.includes(categoryParam as EventCategory) ? categoryParam as EventCategory : 'all'
+  const setSelectedCategory = (category: EventFilterCategory) => setSearchParams((current) => {
+    const next = new URLSearchParams(current)
+    if (category === 'all') next.delete('category')
+    else next.set('category', category)
+    return next
+  }, { replace: true })
   const [selectedDatePreset, setSelectedDatePreset] = useState<DatePreset>('all')
   const [startDate, setStartDate] = useState('')
   const [endDate, setEndDate] = useState('')
-  const [events, setEvents] = useState<EventItem[]>([])
-  const hasCalendarConfig = Boolean(
-    calendarApiKey && eventCategories.some((category) => appConfig.googleCalendarIds[category]),
-  )
-  const [isLoading, setIsLoading] = useState(hasCalendarConfig)
-  const [error, setError] = useState('')
+  const { events, isLoading, errorKey, hasCalendarConfig, retry } = useCalendarEvents()
   const [searchTerm, setSearchTerm] = useState('')
   const [savedIds, setSavedIds] = useState<string[]>(() => {
     const storedEvents = window.localStorage.getItem(savedEventsKey)
@@ -121,58 +125,15 @@ function EventsPage() {
     window.localStorage.setItem(savedEventsKey, JSON.stringify(savedIds))
   }, [savedIds])
 
-  useEffect(() => {
-    if (!hasCalendarConfig) {
-      setIsLoading(false)
-      setError(t('events.configMissing'))
-      return
-    }
-    const configuredCalendarApiKey = calendarApiKey as string
-
-    const abortController = new AbortController()
-
-    const loadEvents = async () => {
-      try {
-        setIsLoading(true)
-        setError('')
-        const eventLists = await Promise.all(
-          eventCategories.map(async (category) => {
-            const calendarId = appConfig.googleCalendarIds[category]
-
-            if (!calendarId) {
-              return []
-            }
-
-            const categoryEvents = await fetchGoogleCalendarEvents({
-              apiKey: configuredCalendarApiKey,
-              calendarId,
-              locale: i18n.resolvedLanguage ?? 'en',
-              signal: abortController.signal,
-            })
-
-            return categoryEvents.map((event) => ({
-              ...event,
-              category,
-            }))
-          }),
-        )
-        setEvents(eventLists.flat())
-      } catch (caughtError) {
-        if (caughtError instanceof DOMException && caughtError.name === 'AbortError') {
-          return
-        }
-
-        const errorDetail = caughtError instanceof Error ? ` (${caughtError.message})` : ''
-        setError(`${t('events.fetchError')}${errorDetail}`)
-      } finally {
-        setIsLoading(false)
-      }
-    }
-
-    void loadEvents()
-
-    return () => abortController.abort()
-  }, [calendarApiKey, hasCalendarConfig, i18n.resolvedLanguage, t])
+  const calendarError = errorKey ? t(errorKey) : ''
+  const hasActiveFilters = searchTerm.trim().length > 0 || selectedCategory !== 'all' || selectedDatePreset !== 'all'
+  const clearFilters = () => {
+    setSearchTerm('')
+    setSelectedCategory('all')
+    setSelectedDatePreset('all')
+    setStartDate('')
+    setEndDate('')
+  }
 
   const normalizedSearch = searchTerm.trim().toLowerCase()
   const dateRange = getDateRange(selectedDatePreset, startDate, endDate)
@@ -236,7 +197,15 @@ function EventsPage() {
         <p className="section-description">{t('events.description')}</p>
       </div>
 
-      {error ? <Alert variant="warning">{error}</Alert> : null}
+      {calendarError ? (
+        <Alert variant="warning" className="event-error" role="status">
+          <p>{calendarError}</p>
+          <div className="d-flex flex-wrap gap-2">
+            {hasCalendarConfig ? <Button variant="outline-danger" onClick={retry}>{t('events.retry')}</Button> : null}
+            <Button as="a" variant="outline-dark" href={siteLinks.instagram} target="_blank" rel="noreferrer">{t('events.instagramFallback')}</Button>
+          </div>
+        </Alert>
+      ) : null}
 
       <EventFilterBar
         selectedCategory={selectedCategory}
@@ -258,17 +227,25 @@ function EventsPage() {
         </Alert>
       ) : null}
 
-      {isLoading ? <Alert variant="light">{t('events.loading')}</Alert> : null}
+      {isLoading ? <Alert variant="light" role="status">{t('events.loading')}</Alert> : null}
 
-      {!isLoading && filteredEvents.length === 0 ? (
-        <div className="saved-event-card">
-          <h3>{t('events.emptyTitle')}</h3>
-          <p>{t('events.emptyBody')}</p>
+      {!isLoading && !calendarError ? (
+        <div className="event-results-bar">
+          <p role="status" aria-live="polite">{t('events.resultCount', { count: filteredEvents.length })}</p>
+          {hasActiveFilters ? <button type="button" className="text-link" onClick={clearFilters}>{t('events.clearFilters')}</button> : null}
         </div>
       ) : null}
 
-      <div className="event-list-scroll d-grid gap-3">
-        {filteredEvents.map((event) => (
+      {!isLoading && !calendarError && filteredEvents.length === 0 ? (
+        <div className="event-empty-state">
+          <h2>{t(hasActiveFilters ? 'events.emptyTitle' : 'events.noUpcomingTitle')}</h2>
+          <p>{t(hasActiveFilters ? 'events.emptyBody' : 'events.noUpcomingBody')}</p>
+          {hasActiveFilters ? <Button variant="outline-danger" onClick={clearFilters}>{t('events.clearFilters')}</Button> : <a className="text-link" href={siteLinks.instagram} target="_blank" rel="noreferrer">{t('events.instagramFallback')}</a>}
+        </div>
+      ) : null}
+
+      <div className="event-list-scroll d-grid gap-3" aria-busy={isLoading}>
+        {!isLoading && !calendarError && filteredEvents.map((event) => (
           <EventCard
             key={getEventKey(event)}
             event={event}

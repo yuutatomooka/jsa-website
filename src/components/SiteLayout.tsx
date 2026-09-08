@@ -1,127 +1,59 @@
-import { useLayoutEffect, useRef } from 'react'
+import { useEffect, useLayoutEffect, useRef } from 'react'
 import Container from 'react-bootstrap/Container'
+import { useTranslation } from 'react-i18next'
 import { Outlet, useLocation } from 'react-router-dom'
 import NavigationBar from './NavigationBar'
 import NewsletterSignup from './NewsletterSignup'
 import SiteFooter from './SiteFooter'
 
+const pageTitles: Record<string, string> = {
+  about: 'nav.about', events: 'nav.events', exchange: 'nav.exchange',
+  board: 'nav.board', faq: 'nav.faq', careers: 'nav.careers',
+  partners: 'nav.partners', sponsorship: 'sponsorship.eyebrow', contact: 'nav.contact',
+  resources: 'nav.resources',
+}
+
 function SiteLayout() {
-  const location = useLocation()
-  const shellRef = useRef<HTMLDivElement>(null)
+  const { pathname, hash, key } = useLocation()
+  const { i18n, t } = useTranslation()
+  const mainRef = useRef<HTMLElement>(null)
+  const previousPath = useRef(pathname)
 
   useLayoutEffect(() => {
-    const shell = shellRef.current
-
-    if (!shell) {
+    const section = hash ? document.getElementById(hash.slice(1)) : null
+    if (section) {
+      section.focus({ preventScroll: true })
+      section.scrollIntoView({ behavior: 'instant', block: 'start' })
+      previousPath.current = pathname
       return
     }
-
-    const revealSelectors = [
-      '.home-hero',
-      '.page-hero',
-      '.section-intro',
-      '.section-heading',
-      '.filter-bar',
-      '.info-card',
-      '.event-preview-card',
-      '.event-list-card',
-      '.saved-events-banner',
-      '.saved-event-card',
-      '.about-story',
-      '.stat-card',
-      '.community-table-wrap',
-      '.custom-contact-form',
-      '.contact-success-alert',
-      '.contact-draft-alert',
-      '.contact-form-fallback',
-      '.exchange-links-row',
-      '.instagram-card',
-      '.considering-hero-banner',
-      '.considering-panel',
-      '.considering-feature-card',
-      '.considering-voices li',
-      '.considering-cta',
-      '.exchange-subpage-hero',
-      '.exchange-subpage-intro',
-      '.exchange-resource-link',
-      '.newsletter-card',
-    ].join(', ')
-
-    const elements = Array.from(new Set(shell.querySelectorAll<HTMLElement>(revealSelectors)))
-      .filter((element) => !element.closest('.site-navbar') && element.tagName !== 'SCRIPT')
-
-    elements.forEach((element, index) => {
-      element.dataset.scrollReveal = ''
-      element.style.setProperty('--reveal-delay', `${(index % 4) * 55}ms`)
-    })
-
-    if (
-      window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
-      !('IntersectionObserver' in window)
-    ) {
-      elements.forEach((element) => element.classList.add('is-visible'))
-
-      return () => {
-        elements.forEach((element) => {
-          delete element.dataset.scrollReveal
-          element.classList.remove('is-visible')
-          element.style.removeProperty('--reveal-delay')
-        })
-      }
+    if (previousPath.current !== pathname) {
+      window.scrollTo({ top: 0, behavior: 'instant' })
+      mainRef.current?.focus({ preventScroll: true })
+      previousPath.current = pathname
     }
+  }, [pathname, hash, key])
 
-    const revealTimeouts: number[] = []
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) {
-            return
-          }
-
-          const element = entry.target as HTMLElement
-          const revealDelay = Number.parseFloat(element.style.getPropertyValue('--reveal-delay')) || 0
-
-          element.classList.add('is-visible')
-          observer.unobserve(element)
-
-          revealTimeouts.push(
-            window.setTimeout(() => {
-              delete element.dataset.scrollReveal
-              element.style.removeProperty('--reveal-delay')
-            }, revealDelay + 760),
-          )
-        })
-      },
-      {
-        rootMargin: '0px 0px -12% 0px',
-        threshold: 0.14,
-      },
-    )
-
-    elements.forEach((element) => observer.observe(element))
-
-    return () => {
-      observer.disconnect()
-      revealTimeouts.forEach((timeoutId) => window.clearTimeout(timeoutId))
-      elements.forEach((element) => {
-        delete element.dataset.scrollReveal
-        element.classList.remove('is-visible')
-        element.style.removeProperty('--reveal-delay')
-      })
-    }
-  }, [location.pathname])
+  useEffect(() => {
+    document.documentElement.lang = i18n.resolvedLanguage === 'ja' ? 'ja' : 'en'
+    const pageKey = pathname === '/resources/japanese-students' ? 'studentResources.title' : pathname === '/resources/uw-madison' ? 'studentResources.uwMadisonTitle' : pageTitles[pathname.split('/')[1]]
+    document.title = `${pathname === '/' ? t('nav.home') : t(pageKey ?? 'notFound.eyebrow')} | JSA at UW–Madison`
+  }, [pathname, i18n.resolvedLanguage, t])
 
   return (
-    <div ref={shellRef} className="site-shell">
-      <NavigationBar />
-      <main>
-        <Container className="py-4 py-lg-5">
-          <div key={location.pathname} className="route-content">
-            <Outlet />
-          </div>
+    <div className="site-shell">
+      <a className="skip-link" href="#main-content" onClick={(event) => {
+        event.preventDefault()
+        mainRef.current?.focus()
+        mainRef.current?.scrollIntoView({ behavior: 'instant' })
+      }}>{t('common.skipContent')}</a>
+      <NavigationBar key={pathname} />
+      <main id="main-content" ref={mainRef} tabIndex={-1}>
+        <Container className="site-content">
+          <div key={pathname} className="route-content"><Outlet /></div>
         </Container>
       </main>
-      <NewsletterSignup />
+      {pathname !== '/' && <NewsletterSignup />}
       <SiteFooter />
     </div>
   )

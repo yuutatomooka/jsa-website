@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import bascomHill from '../assets/bascom_hill.jpg'
+import bascomHill from '../assets/optimized/bascom_hill.jpg'
 
 function ExchangeConsideringPage() {
   const { t } = useTranslation()

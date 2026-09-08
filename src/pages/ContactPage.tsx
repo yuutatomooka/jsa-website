@@ -76,7 +76,7 @@ function ContactPage() {
       </div>
 
       {hasSubmitted ? (
-        <Alert variant="success" className="contact-success-alert">
+        <Alert variant="light" className="contact-success-alert" role="status">
           <strong>{t('contact.successTitle')}</strong>
           <span>{t('contact.successBody')}</span>
         </Alert>
@@ -90,19 +90,19 @@ function ContactPage() {
         className="custom-contact-form"
         action={contactFormAction}
         method="post"
-        target="contact-form-submit-frame"
+        target="_blank"
         onSubmit={() => {
           setHasSubmitted(true)
-          window.localStorage.removeItem(contactDraftKey)
-          setFormValues(emptyDraft)
         }}
       >
+        <p className="text-muted mb-4">{t('common.requiredFields')}</p>
         <div className="contact-form-grid">
           <div className="contact-field">
-            <label htmlFor="contact-name">{t('contact.name')}</label>
+            <label htmlFor="contact-name">{t('contact.name')} <span aria-hidden="true">*</span></label>
             <input
               id="contact-name"
               type="text"
+              autoComplete="name"
               name="entry.1884252496"
               placeholder={t('contact.placeholderName')}
               value={formValues.name}
@@ -112,10 +112,11 @@ function ContactPage() {
           </div>
 
           <div className="contact-field">
-            <label htmlFor="contact-email">{t('contact.email')}</label>
+            <label htmlFor="contact-email">{t('contact.email')} <span aria-hidden="true">*</span></label>
             <input
               id="contact-email"
               type="email"
+              autoComplete="email"
               name="entry.1014913984"
               placeholder={t('contact.placeholderEmail')}
               value={formValues.email}
@@ -125,9 +126,10 @@ function ContactPage() {
           </div>
 
           <div className="contact-field">
-            <label htmlFor="contact-affiliation">{t('contact.affiliation')}</label>
+            <label htmlFor="contact-affiliation">{t('contact.affiliation')} <small>{t('common.optional')}</small></label>
             <input
               id="contact-affiliation"
+              autoComplete="organization"
               type="text"
               name="entry.1500648834"
               placeholder={t('contact.placeholderAffiliation')}
@@ -137,7 +139,7 @@ function ContactPage() {
           </div>
 
           <div className="contact-field">
-            <label htmlFor="contact-inquiry-type">{t('contact.inquiryType')}</label>
+            <label htmlFor="contact-inquiry-type">{t('contact.inquiryType')} <span aria-hidden="true">*</span></label>
             <select
               id="contact-inquiry-type"
               name="entry.515563274"
@@ -155,7 +157,7 @@ function ContactPage() {
           </div>
 
           <div className="contact-field contact-field-full">
-            <label htmlFor="contact-subject">{t('contact.subject')}</label>
+            <label htmlFor="contact-subject">{t('contact.subject')} <span aria-hidden="true">*</span></label>
             <input
               id="contact-subject"
               type="text"
@@ -168,7 +170,7 @@ function ContactPage() {
           </div>
 
           <div className="contact-field contact-field-full">
-            <label htmlFor="contact-message">{t('contact.message')}</label>
+            <label htmlFor="contact-message">{t('contact.message')} <span aria-hidden="true">*</span></label>
             <textarea
               id="contact-message"
               name="entry.494316112"
@@ -192,12 +194,6 @@ function ContactPage() {
           </Button>
         </div>
       </form>
-
-      <iframe
-        className="contact-submit-frame"
-        name="contact-form-submit-frame"
-        title={t('contact.submitFrameTitle')}
-      />
 
       <div className="contact-form-fallback">
         <p>{t('contact.formFallback')}</p>

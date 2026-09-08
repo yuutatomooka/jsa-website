@@ -6,11 +6,15 @@ export type EventItem = {
   title: string
   date: string
   startsAt?: string
+  endsAt?: string
+  allDay?: boolean
+  detailsUrl?: string
   location: string
   description: string
   calendarUrl: string
 }
 
+// Legacy demonstration content. Upcoming sections must use the live calendar, not these undated examples.
 export const featuredEvents: EventItem[] = [
   {
     category: 'communityCulture',

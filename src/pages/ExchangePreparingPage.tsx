@@ -2,7 +2,7 @@ import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import { useTranslation } from 'react-i18next'
 import SectionCard from '../components/SectionCard'
-import humanities from '../assets/humanities.jpg'
+import humanities from '../assets/optimized/humanities.jpg'
 
 function ExchangePreparingPage() {
   const { t } = useTranslation()

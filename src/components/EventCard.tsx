@@ -19,15 +19,18 @@ function EventCard({ event, eventKey, isSaved, onToggleSave }: EventCardProps) {
         <div className="d-flex flex-column flex-lg-row justify-content-between gap-3">
           <div className="flex-grow-1">
             <div className="d-flex flex-wrap gap-2 align-items-center">
+              <span className="pill-label">{t(`categories.${event.category}`)}</span>
               {event.location ? <span className="event-location">{event.location}</span> : null}
             </div>
-            <Card.Title className="mt-3">{event.title}</Card.Title>
+            <Card.Title as="h2" className="mt-3">{event.title}</Card.Title>
             <Card.Text className="mb-2">{event.description}</Card.Text>
           </div>
           <div className="event-actions">
             <div className="event-date">{event.date}</div>
             <Button
               variant={isSaved ? 'danger' : 'outline-danger'}
+              aria-pressed={isSaved}
+              aria-label={`${isSaved ? t('events.saved') : t('events.save')}: ${event.title}`}
               onClick={() => onToggleSave(eventKey)}
             >
               {isSaved ? t('events.saved') : t('events.save')}

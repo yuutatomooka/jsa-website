@@ -1,0 +1,34 @@
+<!-- Paste this temporary test into WIN Website Custom JavaScript after the bundle URL is live. -->
+<script>
+(() => {
+  // Set this to the exact path of a temporary WIN page before pasting.
+  const testPath = '/JSA/replace-with-your-test-page/'
+  if (location.pathname !== testPath) return
+
+  const testId = 'jsa-win-external-loader-test'
+  document.getElementById(testId)?.remove()
+
+  const script = document.createElement('script')
+  script.src = 'https://yuutatomooka.github.io/jsaweb/win/jsa-win.js?v=1'
+  script.async = true
+
+  script.onload = () => {
+    const test = document.createElement('section')
+    test.id = testId
+    test.dataset.jsaBlock = 'hero'
+    test.innerHTML = `
+      <p data-jsa-field="eyebrow">JSA / WIN compatibility test</p>
+      <h1 data-jsa-field="title">React is loading from GitHub Pages.</h1>
+      <p data-jsa-field="body">The WIN field contains only this small loader. The React bundle is hosted separately.</p>
+    `
+    document.body.appendChild(test)
+    window.JSAWin?.start()
+  }
+
+  script.onerror = () => {
+    console.warn('The JSA bundle could not be loaded from GitHub Pages.')
+  }
+
+  document.head.appendChild(script)
+})()
+</script>

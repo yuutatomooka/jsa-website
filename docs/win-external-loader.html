@@ -1,0 +1,13 @@
+<!-- This is the production loader. Replace the URL only if GitHub Pages reports a different deployed site URL. -->
+<script>
+(() => {
+  if (window.JSAWin || document.querySelector('[contenteditable="true"], [data-jsa-editor]')) return
+
+  const script = document.createElement('script')
+  script.src = 'https://yuutatomooka.github.io/jsaweb/win/jsa-win.js?v=1'
+  script.async = true
+  script.onload = () => window.JSAWin?.start()
+  script.onerror = () => console.warn('JSA design could not be loaded; WIN content remains visible.')
+  document.head.appendChild(script)
+})()
+</script>

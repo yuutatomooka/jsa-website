@@ -52,9 +52,11 @@ const formatEventDate = (date: Date, isAllDay: boolean, locale: string) =>
     day: 'numeric',
     ...(isAllDay
       ? {}
-      : {
+        : {
           hour: 'numeric',
           minute: '2-digit',
+          timeZone: 'America/Chicago',
+          timeZoneName: 'short',
         }),
   }).format(date)
 
@@ -88,6 +90,9 @@ const toEventItem = (event: GoogleCalendarEvent, locale: string): CalendarEventI
     title: event.summary ?? 'Untitled event',
     date: formatEventDate(start, isAllDay, locale),
     startsAt: start.toISOString(),
+    endsAt: end.toISOString(),
+    allDay: isAllDay,
+    detailsUrl: event.htmlLink?.startsWith('https://') ? event.htmlLink : undefined,
     location: event.location ?? '',
     description: event.description ?? '',
     calendarUrl: createGoogleCalendarUrl(event, start, end),
