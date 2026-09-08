@@ -47,5 +47,8 @@ export function readSection(source: HTMLElement) {
   }
   const title = hero?.querySelector('h1')?.textContent?.trim()
   if (!title) return null
-  return { kind: 'hero', title, items: [], image: undefined, alt: '' }
+  const body = hero
+    ? Array.from(hero.querySelectorAll('p')).map(paragraph => richText(paragraph, source.baseURI)).join('')
+    : ''
+  return { kind: 'hero', title, body, items: [], image: undefined, alt: '' }
 }

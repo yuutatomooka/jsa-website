@@ -30,7 +30,7 @@ function Block({ data, ready }: { data: NonNullable<ReturnType<typeof readSectio
   return <section className={`jsa-win ${data.kind}`} lang={i18n.language}>
     <style>{css}</style>
     <div className="jsa-win-copy">
-      {data.kind === 'hero' ? <h1>{data.title}</h1> : <>
+      {data.kind === 'hero' ? <><h1>{data.title}</h1>{data.body && <div className="jsa-win-body" dangerouslySetInnerHTML={{ __html: data.body }} />}</> : <>
         <button type="button" onClick={() => setExpanded(!expanded)}>{t(expanded ? 'collapse' : 'expand')}</button>
         <div key={String(expanded)}>{data.items.map((item, index) => <details key={index} open={expanded}>
           <summary>{item.title}</summary><div dangerouslySetInnerHTML={{ __html: item.html }} />

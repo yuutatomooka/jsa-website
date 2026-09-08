@@ -16,9 +16,16 @@ test('real WIN sections: header/footer preserved, hero and all accordion bodies 
   assert.equal(data[0], null)
   assert.equal(data[3], null)
   assert.equal(data[1].title, 'Simple Title')
+  assert.equal(data[1].body, '')
   assert.equal(data[2].items.length, 3)
   assert.match(data[2].items[0].html, /thoughtfully presented documentation/)
   assert.equal(data[2].image, 'https://win.wisc.edu/css/themes/stack/img/inner-2.jpg')
+  dom.window.close()
+})
+test('hero body remains WIN-owned rich text', () => {
+  const dom = new JSDOM('<div class="section-cont"><section class="simple-section-title-bg"><h1>Welcome</h1><p>Made <strong>for everyone</strong>.</p></section></div>', { url: 'https://win.wisc.edu/JSA/home/' })
+  const data = readSection(dom.window.document.querySelector('.section-cont'))
+  assert.match(data.body, /<strong>for everyone<\/strong>/)
   dom.window.close()
 })
 test('allowlist rejects scripts, handlers and unsafe URLs while preserving rich text', () => {
