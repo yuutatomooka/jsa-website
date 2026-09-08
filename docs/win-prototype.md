@@ -22,7 +22,7 @@
 1. 検証用ページでひな形を保存し、WINが `data-jsa-*` 属性を保持するか確認する。
 2. 標準編集操作で文章・画像を変更し、部品を複製しても属性が保持されるか確認する。
 3. 公開ページと編集画面を確実に区別できる条件を調べる。現在のcontenteditable検出は補助機能で、WIN編集画面の完全な判定ではない。
-4. GitHub Pagesの配信では、ワークフローが`dist/win/jsa-win.js`を自動的に含める。WINには`docs/win-external-loader.html`の短いローダーだけを入れる。検証済みの公開ページだけで読み込み完了後に`JSAWin.start()`を呼ぶ。
+4. GitHub Pagesを`main`ブランチの`/docs`フォルダから配信する。`npm run publish:win-bundle`で`docs/win/jsa-win.js`を生成してコミットする。WINには`docs/win-external-loader.html`の短いローダーだけを入れる。検証済みの公開ページだけで読み込み完了後に`JSAWin.start()`を呼ぶ。
 5. 読み込みを止めて通常表示、モバイル、キーボード操作、既存WINのCSSとの干渉を確認する。
 
 外部読み込みの最初の検証は、`docs/win-external-loader-test.html`をWINの検証ページに一時的に貼る。`React is loading from GitHub Pages.`が表示されたら、バンドルの公開とWINからの読み込みが確認できる。その後にテスト用コードを外し、`docs/win-external-loader.html`へ置き換える。
