@@ -1,13 +1,21 @@
-<!-- This is the production loader. Replace the URL only if GitHub Pages reports a different deployed site URL. -->
+<!-- WIN Website Custom JavaScript: replace the entire old test loader with this. -->
 <script>
 (() => {
-  if (window.JSAWin || document.querySelector('[contenteditable="true"], [data-jsa-editor]')) return
-
-  const script = document.createElement('script')
-  script.src = 'https://yuutatomooka.github.io/jsa-website/win/jsa-win.js?v=1'
-  script.async = true
-  script.onload = () => window.JSAWin?.start()
-  script.onerror = () => console.warn('JSA design could not be loaded; WIN content remains visible.')
-  document.head.appendChild(script)
+  if (location.origin !== 'https://win.wisc.edu' ||
+      !/^\/JSA\/[a-z0-9-]+\/$/i.test(location.pathname) ||
+      location.search || window.top !== window.self) return
+  const run = () => {
+    if (document.querySelector('[contenteditable]:not([contenteditable="false"]), .section-cont--edit, [data-jsa-editor]')) return
+    if (window.JSAWin) return window.JSAWin.start()
+    if (document.getElementById('jsa-win-loader')) return
+    const s = document.createElement('script')
+    s.id = 'jsa-win-loader'
+    s.src = 'https://yuutatomooka.github.io/jsa-website/win/jsa-win.js?v=20260908-production'
+    s.onload = () => window.JSAWin?.start()
+    s.onerror = () => s.remove()
+    document.head.appendChild(s)
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run, { once: true })
+  else run()
 })()
 </script>

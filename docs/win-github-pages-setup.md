@@ -1,15 +1,9 @@
-# GitHub Actionsなしの公開設定
+# GitHub Pages配信
 
-このリポジトリでは、React用JSをGitHub Pagesから配信する。現在のサイトは既存のGitHub Pagesワークフローが`dist`を公開しているため、`npm run publish:win-bundle`は`docs/win`と`dist/win`の両方へJSを出力する。
+GitHub Actionsがmainの `npm run build` で生成したdistを公開します。
+`dist/win/jsa-win.js` はbuildに含まれ、同じファイルを `docs/win/jsa-win.js` にも保存します。
 
-`main`にプッシュされ、既存のPagesデプロイが完了すると、バンドルは`https://yuutatomooka.github.io/jsa-website/win/jsa-win.js`になる。PagesのURLが異なる場合は、そのURLの末尾に`win/jsa-win.js`を付け、両方のWINローダーの`script.src`を更新する。
+配信URL: https://yuutatomooka.github.io/jsa-website/win/jsa-win.js
 
-## 更新時
-
-JSを変更した時は、リポジトリのルートで次を実行する。
-
-```bash
-npm run publish:win-bundle
-```
-
-すると`docs/win/jsa-win.js`が更新される。これを他の変更とともにコミットし、`main`へプッシュする。WINローダーのURL末尾にある`?v=1`は、更新ごとに`?v=2`、`?v=3`のように増やすと、古いJSがブラウザに残りにくい。
+運用・貼り替え・復帰は [運用文書](win-prototype.md)、WINに貼るコードは [production loader](win-external-loader.html) を参照してください。
+`win-external-loader-test.html` も互換用に同じproduction loaderへ変更しました。テストカードを生成するコードは使いません。

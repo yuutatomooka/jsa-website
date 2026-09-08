@@ -11,3 +11,10 @@
 .jsa-win.activity { border:1px solid #e4e6e2; border-radius:12px; display:grid; grid-template-columns:1fr 240px; gap:32px; align-items:center; }
 .jsa-win.activity img { border-radius:8px; aspect-ratio:1.5; }
 @media(max-width:760px) { .jsa-win { padding:24px; margin:20px auto; } .jsa-win.hero,.jsa-win.activity { grid-template-columns:1fr; gap:24px; } }
+.jsa-win.hero { display:block; border-bottom:4px solid #ba1826; }
+.jsa-win.accordion { display:grid; grid-template-columns:minmax(0,1fr); gap:32px; min-height:0 !important; }
+.jsa-win details { border-bottom:1px solid #ddd; padding:20px 0; }
+.jsa-win summary { cursor:pointer; font-size:1.25rem; font-weight:600; }
+.jsa-win details a { display:inline; padding:0; background:none; color:#a71925; text-decoration:underline; }
+.jsa-win button { background:#ba1826; color:white; border:0; border-radius:6px; padding:10px 18px; cursor:pointer; }
+.jsa-win :is(button,summary):focus-visible { outline:3px solid #ba1826; outline-offset:4px; }

@@ -1,34 +1,42 @@
-# WINで更新できるJSAサイト：試作
+# WIN公開UI 運用・引き継ぎ
 
-## 試す
+WIN Website Builderが本文の唯一の編集元です。OfficerはWINで文章・写真・accordion項目を編集して保存・公開します。日常更新でGitHubの操作は不要です。
 
-`npm run dev` で起動し、表示されたアドレスの末尾に `win-preview.html` を付ける（例：`http://localhost:5173/jsaweb/win-preview.html`）。
+## 初回導入
 
-- 「文章を編集」で見出しや本文を直接編集し、「デザイン表示」で反映を見る。
-- 「メイン写真を差し替える」で写真の変更を試す。
-- 「活動紹介を複製」で同じ部品を追加する。
-- 「通常表示に戻す」でReactを解除しても内容が残ることを確認する。
+1. 現在のHomeを使用します。ページの追加・削除は不要です。
+2. Website SettingsのCustom JavaScriptにある既存のtest loaderを**全て削除し**、[production loader](win-external-loader.html)のコードに置き換えて保存してください。欄がJavaScript本体のみを要求する場合は前後のscriptタグを除きます。両方を同時に残さないでください。
+3. 公開Home `https://win.wisc.edu/JSA/home/` を新しいタブで開きます。元のSimple Titleの位置にHero、元のaccordionの位置に開閉可能なカードが表示されます。本文末尾にテストカードは表示されません。
+4. WINのEdit画面で標準編集UIが残ること、本文変更・保存・公開後の再読み込みで変更が反映されることを確認します。
+5. スマートフォン幅とキーボードでsummaryの開閉・リンクを確認します。
 
-この画面はWINの編集画面を模したローカル試作。内容は保存されず、再読み込みで元に戻る。実際のWINとは未接続。
+公開JSのみ配信済みでも、WIN上の古いtest loaderは自動更新されません。上記の貼り替えが必要です。
 
-## 内容と表示の境界
+## 対応範囲
 
-元のHTMLが唯一の編集元。Reactは見出し・本文・画像・リンクを読み、隣に表示用の部品を作る。描画完了後にだけ編集元を隠す。停止時には表示用部品を削除し、編集元を復元する。未知の部品・見出しのない部品はそのまま残す。リンクと画像はHTTP(S)のみ対応。本文はプレーンテキスト（リッチテキストや日英切り替えは今回の対象外）。
+公開Homeの2026-09-08取得HTMLに基づき、`.section-cont` 内の `.simple-section-title-bg` Hero見出しと `.accordion` の各見出し・全本文・隣接画像を変換します。header、footer、メニューや他の部品はWINのままです。未対応のフォーム・埋め込みを持つセクションは元表示を維持します。Heroは現在の見出しテンプレートに対応し、背景の装飾CSSは取り込みません。
 
-対応する部品は `data-jsa-block="hero"` と `data-jsa-block="activity"`。内部フィールドは `data-jsa-field="title|eyebrow|body|image|link"`。`win-preview.html` のmain内がひな形。画像URLはWIN上ではアップロード済みの公開画像URLへ変更する。ローカルの `/src/assets/` はWINでは使えない。
+本文は許可した段落、リスト、強調、見出し、HTTP(S)リンク・画像だけに変換します。スクリプト、イベント属性、CSSは取り込みません。元DOMは削除せず、React描画成功後だけ非表示にします。
 
-## WIN導入前に確認すること
+実行範囲は `https://win.wisc.edu/JSA/<slug>/`、クエリなし、iframe外です。contenteditable、`.section-cont--edit`、`data-jsa-editor`を検出したら停止・復元します。公開HTMLにも存在するdata-editableは編集画面判定に使いません。管理URL・クエリ付きプレビューは元のWIN表示です。WINの編集画面DOMは未検証なので初回導入時に必ず上記確認を行ってください。
 
-1. 検証用ページでひな形を保存し、WINが `data-jsa-*` 属性を保持するか確認する。
-2. 標準編集操作で文章・画像を変更し、部品を複製しても属性が保持されるか確認する。
-3. 公開ページと編集画面を確実に区別できる条件を調べる。現在のcontenteditable検出は補助機能で、WIN編集画面の完全な判定ではない。
-4. GitHub Pagesを`main`ブランチの`/docs`フォルダから配信する。`npm run publish:win-bundle`で`docs/win/jsa-win.js`を生成してコミットする。WINには`docs/win-external-loader.html`の短いローダーだけを入れる。検証済みの公開ページだけで読み込み完了後に`JSAWin.start()`を呼ぶ。
-5. 読み込みを止めて通常表示、モバイル、キーボード操作、既存WINのCSSとの干渉を確認する。
+## 日英ページ
 
-外部読み込みの最初の検証は、`docs/win-external-loader-test.html`をWINの検証ページに一時的に貼る。`React is loading from GitHub Pages.`が表示されたら、バンドルの公開とWINからの読み込みが確認できる。その後にテスト用コードを外し、`docs/win-external-loader.html`へ置き換える。
+英語のHomeは `home/`、日本語版を作る場合のみWINで別ページを追加し、URL末尾を `home-ja/` にしてください。各言語の本文はそれぞれWINで編集します。日本語ページへのリンクはWINメニューで設定してください。未作成の日本語ページへのリンクは自動生成しません。
 
-配信URL・公開ページ判定が未確認なので、本番用ローダーはまだ確定していない。WINの内部APIやイベント取得方法は仮定していない。配信障害時は元のHTMLが表示される。実行時に止める場合は `JSAWin.stop()`、恒久的に戻す場合は導入したローダーを外す。
+`-ja/` のページでは共通操作ラベルを日本語、それ以外は英語にします。ラベルは `src/win/entry.tsx` の独立i18nextインスタンスで管理します。本文を翻訳JSONへ複製したり自動翻訳したりしません。他のページにも同じslug規則を使えます。
 
-## 引き継ぎ
+## 復帰と障害対応
 
-日常の担当者には「文章・写真の変更」「部品の複製」「公開」の手順を渡す。技術担当者にはソース、配信先の団体アカウント権限、導入ローダー、復帰手順を渡す。WIN側の属性保持・編集画面の検証が通るまでは、コード不要の運用が完成したとは扱わない。
+- 一時停止: ブラウザConsoleで `JSAWin.stop()`。元セクションのdisplay値・優先度を復元しReactを削除します。再開は `JSAWin.start()`。
+- 恒久停止: WINのCustom JavaScriptからloaderを外して保存、公開ページを再読み込み。
+- JS取得失敗時は元HTMLがそのまま表示されます。描画エラー時は該当セクションを復元します。
+- WINテンプレート変更後、対応しない部品は元表示を維持します。新しいテンプレートを独自UIにするには技術担当がadapterとfixtureテストを更新します。
+- 公開ページのライブ編集同期は行いません。WINで公開後、再読み込みで最新本文を反映します。
+
+## 技術担当者
+
+`npm ci` → `npm run build` → `npm run lint` → `npm test`。
+buildは通常サイトに加え `dist/win/jsa-win.js` と `docs/win/jsa-win.js` を生成します。mainへのpushでGitHub ActionsがdistをPagesへ公開します。配信URLは `https://yuutatomooka.github.io/jsa-website/win/jsa-win.js`。
+
+更新では生成JSもコミットし、loaderのv値を更新してWINへ貼り直します。アダプタは `src/win/adapter.ts`、ライフサイクルは `src/win/entry.tsx`、スタイルは `src/win/theme.css`。`tests/fixtures/win-home.html` は公開ページのセクション構造のfixtureです。旧data-jsa-block試作とwin-preview.htmlは本番の検証には使いません。

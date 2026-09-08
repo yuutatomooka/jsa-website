@@ -1,38 +1,20 @@
-import { Component, useLayoutEffect } from 'react'
+import { Component, useLayoutEffect, useState } from 'react'
 import type { ReactNode } from 'react'
-import { createRoot } from 'react-dom/client'
-import type { Root } from 'react-dom/client'
+import { createRoot, type Root } from 'react-dom/client'
+import { createInstance } from 'i18next'
+import { I18nextProvider, useTranslation } from 'react-i18next'
+import { editorSelector, isPublic, readSection } from './adapter'
 import css from './theme.css?inline'
 
-// Source HTML remains the content owner. No generated HTML is read back as content.
-const mounts = new Map<HTMLElement, { root: Root; target: HTMLElement; hidden: boolean }>()
+const i18n = createInstance()
+void i18n.init({ lng: 'en', fallbackLng: 'en', initAsync: false, resources: {
+  en: { translation: { expand: 'Expand all', collapse: 'Collapse all' } },
+  ja: { translation: { expand: 'すべて開く', collapse: 'すべて閉じる' } },
+} })
+const mounts = new Map<HTMLElement, { root: Root; target: HTMLElement; display: string; priority: string }>()
 let observer: MutationObserver | undefined
 let enabled = false
-const selector = '[data-jsa-block]'
-const editable = () => !!document.querySelector('[contenteditable="true"], [data-jsa-editor]')
-
-function read(source: HTMLElement) {
-  const field = (name: string) => source.querySelector(`[data-jsa-field="${name}"]`)
-  const picture = field('image') as HTMLImageElement | null
-  const link = field('link') as HTMLAnchorElement | null
-  const safeUrl = (value: string | undefined) => {
-    if (!value) return undefined
-    try {
-      const url = new URL(value, document.baseURI)
-      return ['https:', 'http:'].includes(url.protocol) ? url.href : undefined
-    } catch { return undefined }
-  }
-  return {
-    kind: source.dataset.jsaBlock,
-    title: field('title')?.textContent?.trim(),
-    eyebrow: field('eyebrow')?.textContent?.trim(),
-    body: field('body')?.textContent?.trim(),
-    image: safeUrl(picture?.getAttribute('src') ?? undefined),
-    alt: picture?.alt ?? '',
-    href: safeUrl(link?.getAttribute('href') ?? undefined),
-    label: link?.textContent?.trim(),
-  }
-}
+const allowed = () => isPublic(new URL(location.href), window.top !== window.self) && !document.querySelector(editorSelector)
 
 class Recovery extends Component<{ restore: () => void; children: ReactNode }, { failed: boolean }> {
   state = { failed: false }
@@ -40,75 +22,64 @@ class Recovery extends Component<{ restore: () => void; children: ReactNode }, {
   componentDidCatch() { this.props.restore() }
   render() { return this.state.failed ? null : this.props.children }
 }
-
-// This library exposes lifecycle functions rather than a Fast Refresh component module.
 // eslint-disable-next-line react-refresh/only-export-components
-function Block({ data, ready }: { data: ReturnType<typeof read>; ready: () => void }) {
+function Block({ data, ready }: { data: NonNullable<ReturnType<typeof readSection>>; ready: () => void }) {
+  const { t } = useTranslation()
+  const [expanded, setExpanded] = useState(false)
   useLayoutEffect(ready, [ready])
-  return <section className={`jsa-win ${data.kind}`}>
+  return <section className={`jsa-win ${data.kind}`} lang={i18n.language}>
     <style>{css}</style>
     <div className="jsa-win-copy">
-      {data.eyebrow && <p className="jsa-win-eyebrow">{data.eyebrow}</p>}
-      {data.kind === 'hero' ? <h1>{data.title}</h1> : <h2>{data.title}</h2>}
-      {data.body && <p className="jsa-win-body">{data.body}</p>}
-      {data.href && data.label && <a href={data.href}>{data.label}<span aria-hidden="true"> →</span></a>}
+      {data.kind === 'hero' ? <h1>{data.title}</h1> : <>
+        <button type="button" onClick={() => setExpanded(!expanded)}>{t(expanded ? 'collapse' : 'expand')}</button>
+        <div key={String(expanded)}>{data.items.map((item, index) => <details key={index} open={expanded}>
+          <summary>{item.title}</summary><div dangerouslySetInnerHTML={{ __html: item.html }} />
+        </details>)}</div>
+      </>}
     </div>
-    {data.image && <img src={data.image} alt={data.alt} loading={data.kind === 'hero' ? 'eager' : 'lazy'} />}
+    {data.image && <img src={data.image} alt={data.alt} loading="lazy" />}
   </section>
 }
-
-function remove(source: HTMLElement) {
+function restore(source: HTMLElement) {
   const mount = mounts.get(source)
-  if (!mount) return
-  source.hidden = mount.hidden
-  mount.root.unmount()
-  mount.target.remove()
-  mounts.delete(source)
-}
-
-function refresh() {
-  observer?.disconnect()
-  if (!enabled || editable()) {
-    for (const source of mounts.keys()) remove(source)
-  } else {
-    for (const source of mounts.keys()) {
-      if (!source.isConnected || !source.matches(selector)) remove(source)
-    }
-    document.querySelectorAll<HTMLElement>(selector).forEach(source => {
-      const data = read(source)
-      if (!['hero', 'activity'].includes(data.kind ?? '') || !data.title || source.parentElement?.closest(selector)) {
-        remove(source)
-        return
-      }
-      let mount = mounts.get(source)
-      if (!mount) {
-        if (source.hidden) return
-        const target = document.createElement('div')
-        target.dataset.jsaRendered = ''
-        source.after(target)
-        mount = { root: createRoot(target), target, hidden: source.hidden }
-        mounts.set(source, mount)
-      }
-      mount.root.render(<Recovery restore={() => { source.hidden = false }}><Block data={data} ready={() => { source.hidden = true }} /></Recovery>)
-    })
+  if (mount) {
+    if (mount.display) source.style.setProperty('display', mount.display, mount.priority)
+    else source.style.removeProperty('display')
+    mount.target.hidden = true
   }
-  observer?.observe(document.body, { subtree: true, childList: true, characterData: true, attributes: true, attributeFilter: ['src', 'href', 'alt', 'data-jsa-block', 'data-jsa-field', 'contenteditable', 'data-jsa-editor'] })
 }
-
-export function start() {
-  if (enabled) return
-  enabled = true
-  observer = new MutationObserver(records => {
-    if (records.some(record => !(record.target instanceof Element ? record.target : record.target.parentElement)?.closest('[data-jsa-rendered]'))) refresh()
-  })
-  refresh()
-}
-
 export function stop() {
   enabled = false
   observer?.disconnect()
   observer = undefined
-  for (const source of mounts.keys()) remove(source)
+  for (const [source, mount] of mounts) {
+    restore(source)
+    mount.root.unmount()
+    mount.target.remove()
+  }
+  mounts.clear()
 }
-
-// No automatic mounting on WIN: the verified public-page loader calls start().
+export function start() {
+  if (enabled || !allowed()) return
+  enabled = true
+  void i18n.changeLanguage(location.pathname.endsWith('-ja/') ? 'ja' : 'en')
+  try {
+    document.querySelectorAll<HTMLElement>('.section-cont').forEach(source => {
+      if (source.hidden || getComputedStyle(source).display === 'none') return
+      const data = readSection(source)
+      if (!data) return
+      const target = document.createElement('div')
+      target.dataset.jsaRendered = ''
+      source.after(target)
+      const root = createRoot(target, { onUncaughtError: () => restore(source) })
+      mounts.set(source, { root, target, display: source.style.getPropertyValue('display'), priority: source.style.getPropertyPriority('display') })
+      root.render(<Recovery restore={() => restore(source)}><I18nextProvider i18n={i18n}><Block data={data} ready={() => {
+        if (enabled && allowed()) source.style.setProperty('display', 'none', 'important')
+        else restore(source)
+      }} /></I18nextProvider></Recovery>)
+    })
+    observer = new MutationObserver(() => { if (!allowed()) stop() })
+    observer.observe(document.body, { subtree: true, childList: true, attributes: true, attributeFilter: ['contenteditable', 'data-jsa-editor', 'class'] })
+  } catch (error) { stop(); console.warn('JSA WIN: original content restored.', error) }
+}
+window.addEventListener('popstate', () => { if (!allowed()) stop() })
