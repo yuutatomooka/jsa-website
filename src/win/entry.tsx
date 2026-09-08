@@ -15,6 +15,21 @@ const mounts = new Map<HTMLElement, { root: Root; target: HTMLElement; display: 
 let observer: MutationObserver | undefined
 let enabled = false
 const allowed = () => isPublic(new URL(location.href), window.top !== window.self) && !document.querySelector(editorSelector)
+const instagramHostId = 'jsa-instagram-feed'
+const instagramScriptId = 'jsa-instagram-platform'
+
+function loadInstagramWidget() {
+  if (!document.getElementById(instagramHostId) || document.getElementById(instagramScriptId)) return
+  const script = document.createElement('script')
+  script.id = instagramScriptId
+  script.src = 'https://elfsightcdn.com/platform.js'
+  script.async = true
+  script.onerror = () => {
+    script.remove()
+    console.warn('JSA WIN: Instagram widget could not be loaded.')
+  }
+  document.head.appendChild(script)
+}
 
 class Recovery extends Component<{ restore: () => void; children: ReactNode }, { failed: boolean }> {
   state = { failed: false }
@@ -63,6 +78,7 @@ export function start() {
   if (enabled || !allowed()) return
   enabled = true
   void i18n.changeLanguage(location.pathname.endsWith('-ja/') ? 'ja' : 'en')
+  loadInstagramWidget()
   try {
     document.querySelectorAll<HTMLElement>('.section-cont').forEach(source => {
       if (source.hidden || getComputedStyle(source).display === 'none') return

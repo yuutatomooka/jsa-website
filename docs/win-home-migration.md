@@ -49,7 +49,19 @@ Use the Website Builder to create these blocks between the existing header and f
    - Copy: `Explore career events, internship and job-related programs, and connections with alumni and partner organizations.`
    - Link: `Explore careers & opportunities` → `/JSA/careers/`
 
-7. **Community links**
+7. **Instagram**
+   - Use a normal CTA or Paragraph section as the surrounding heading/copy.
+   - In that section's Source editor, add this display host. Do not add a `script` tag.
+
+   ```html
+   <div id="jsa-instagram-feed">
+     <div class="elfsight-app-2e2ea4a1-8e3f-4680-9b96-6e9bb86fd82f"></div>
+   </div>
+   ```
+
+   The published-page bundle conditionally loads the existing Elfsight app only when this host exists. It never loads in the WIN editor.
+
+8. **Community links**
    - `Meet our partners` → `/JSA/partners/`
    - `Life at JSA.` → `https://www.instagram.com/jsamadison/`
 

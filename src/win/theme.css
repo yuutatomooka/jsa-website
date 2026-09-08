@@ -18,3 +18,4 @@
 .jsa-win details a { display:inline; padding:0; background:none; color:#a71925; text-decoration:underline; }
 .jsa-win button { background:#ba1826; color:white; border:0; border-radius:6px; padding:10px 18px; cursor:pointer; }
 .jsa-win :is(button,summary):focus-visible { outline:3px solid #ba1826; outline-offset:4px; }
+#jsa-instagram-feed { max-width:1120px; margin:0 auto; min-height:180px; }
